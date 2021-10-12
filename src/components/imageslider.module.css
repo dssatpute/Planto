@@ -1,0 +1,13 @@
+
+.main
+{
+    overflow-x: hidden;
+    overflow-y:hidden;
+    margin-top: calc(100vh-70px);
+    padding: 0.5rem;
+    
+}
+.c1 ,.c2, .c3
+{
+    width: 100%;
+}

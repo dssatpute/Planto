@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Cabin&family=Ubuntu:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+
+.header_logo {
+  font-family: 'Pacifico';
+  margin: 0%;
+  font-size: 3.5rem;
+  position: relative;
+  color: rgb(0, 0, 0);
+  margin-left: 20px;
+  /* display: flex; */
+}
+.sign_in {
+  
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "Cabin";
+  height: 500px;
+  color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+.input_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 500px;
+  padding: 1rem;
+  color: black;
+}
+
+.input_elements {
+  width: 300px;
+  height: 20px;
+  border-radius: 20px;
+  border: none;
+  border: 1px;
+  outline: none;
+  padding: 1.2rem;
+  font-size: 18px;
+  text-indent: 10px;
+  background-color: rgb(224, 224, 224)
+}
+.sign_in_button {
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 45px;
+  width: 200px;
+  height: 40px;
+  border-radius: 20px;
+  border:none;
+  color: whitesmoke;
+  font-weight: bold;
+  font-size: 15px;
+  background-color: no;
+  word-spacing: 3px;
+
+}
+.input_label {
+  font-size: 20px;
+}
+.create_account {
+  color: gray;
+  height: 200px;
+  display: flex;
+  margin-left: 20px;
+  flex-direction: column;
+  justify-content: space-around;
+  /* align-items: center; */
+}
+.create_account_button {
+  width: 300px;
+  height: 40px;
+  border-radius: 20px;
+  border: 3px solid black;
+  color: rgb(3, 3, 3);
+  font-weight: bold;
+  font-size: 15px;
+}
+.sign_in_button:hover{
+    border:2px whitesmoke;
+    cursor: pointer;
+    background-color: black;
+    transition: 0.3s;
+}
+.create_account_button:hover
+{
+    cursor: pointer;
+    background-color: black;
+    /* transition: 0.6s; */
+    color: whitesmoke;
+    transition: all 0.5s ease-in;
+    transition: all 0.5s ease-out;
+}

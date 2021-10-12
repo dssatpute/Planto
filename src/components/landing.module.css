@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
+
+.main
+{
+  display: flex;
+  flex-direction: column;
+}
+.navbar
+{
+  display: flex;
+  justify-content: space-between;
+}
+.navbar_utility
+{
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 100px;
+}
+.hero
+{
+  width: 100%;
+  background-image: url('../assets/images/background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 400px;
+}
+.hero_text
+{
+  margin-top: 90px;
+  text-align: center;
+  font-family: 'Dancing Script';
+  font-size:50px;
+  color: white;
+}
+.best_selling_plants
+{
+  display: flex;
+  flex-wrap: wrap;
+}
+.plant_card
+{
+  height: 300px;
+  width: 300px;
+}
