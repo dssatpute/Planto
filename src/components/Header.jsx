@@ -19,6 +19,7 @@ const Header = () => {
           className={styles.dropdown_button}
           onClick={(e) => {
             setActivePlant(!activePlant);
+            setActiveGarden(false)
           }}
         >
           Plants
@@ -36,6 +37,7 @@ const Header = () => {
           className={styles.dropdown_button}
           onClick={(e) => {
             setActiveGarden(!activeGarden);
+            setActivePlant(false)
           }}
         >
           Accessories

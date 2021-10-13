@@ -7,6 +7,7 @@ function App() {
   return (
     <div>
       <Landing></Landing>
+      {/* <Signin/> */}
     </div>
    
   );
