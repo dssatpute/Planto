@@ -1,15 +1,25 @@
 import Landing from "./components/Landing";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Signin from "./components/SignIn";
 import Createaccount from "./components/CreateAccount";
 
 function App() {
   return (
-    <div>
-      <Landing></Landing>
-      {/* <Signin/> */}
-    </div>
-   
+    <Router>
+      <div>
+        <Switch>
+          <Route path="/" exact>
+            <Landing />
+          </Route>
+          <Route path="/login">
+            <Signin />
+          </Route>
+          <Route path="/signup">
+            <Createaccount />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

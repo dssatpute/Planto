@@ -55,9 +55,9 @@ const Header = () => {
           <ShoppingCartIcon />
         </div>
         <div className={styles.login_div}>
-          <button className={styles.login_button} type="submit">
+          <a href="/login"><button  className={styles.login_button} type="submit">
             LOG IN
-          </button>
+          </button></a>
         </div>
       </div>
     </div>
