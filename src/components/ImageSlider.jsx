@@ -5,9 +5,9 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
 
-import c1 from '../assets/sliderimages/c1.png'
-import c2 from '../assets/sliderimages/c2.png'
-import c3 from '../assets/sliderimages/c3.png'
+import c1 from '../assets/images/sliderimages/c1.png'
+import c2 from '../assets/images/sliderimages/c2.png'
+import c3 from '../assets/images/sliderimages/c3.png'
 
 
 const Imageslider = () => {
