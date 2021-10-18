@@ -30,21 +30,34 @@ const promoItems = [
 
 const Gardendecorcare = () => {
   return (
-    <div className={styles.main_container}>
-      {promoItems.map((item) => (
-        <div className={styles.promo_block}>
-          <img src={item.image} className={styles.image}></img>
-          <div className={styles.inner_block}>
-            <h2 style={{fontSize:'1.5rem',color:'#082a54'}}>{item.price}</h2>
-            <p style={{fontSize:'1.1rem',color:"black",fontWeight:'200'}} className="promo-content">{item.content}</p>
+    <>
+      <div className={styles.main_container}>
+        {promoItems.map((item) => (
+          <div className={styles.promo_block}>
+            <img src={item.image} className={styles.image}></img>
+            <div className={styles.inner_block}>
+              <h2 style={{ fontSize: "1.5rem", color: "#082a54" }}>
+                {item.price}
+              </h2>
+              <p
+                style={{
+                  fontSize: "1.1rem",
+                  color: "black",
+                  fontWeight: "200",
+                }}
+                className="promo-content"
+              >
+                {item.content}
+              </p>
 
-            <div>
-              <button className={styles.shop_button}>Shop Now</button>
+              <div>
+                <button className={styles.shop_button}>Shop Now</button>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </>
   );
 };
 

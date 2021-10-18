@@ -4,6 +4,7 @@ import Header from "./Header";
 import Imageslider from "./ImageSlider";
 import Bestselling from "./BestSelling";
 import Gardendecorcare from "./GardenDecorCare";
+import Footer from './Footer'
 
 const Landing = () => {
   const [render, setRender] = useState(true);
@@ -33,6 +34,7 @@ const Landing = () => {
       <Imageslider />
       <Bestselling />
       <Gardendecorcare/>
+      <Footer/>
     </div>
   );
 };
