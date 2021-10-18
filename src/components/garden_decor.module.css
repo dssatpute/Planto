@@ -1,0 +1,63 @@
+
+.main_container
+{
+    font-family: 'Oxygen';
+    max-width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 1rem;
+}
+.promo_block
+{
+    
+    position: relative;
+    height: 230px;
+    align-items: left;
+    margin-top: 50px;
+    width: 550px;
+    
+}
+.p{
+    font-size: 5rem;
+}
+.image
+{
+    border-radius: 10px;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+.inner_block
+{
+   
+    padding:1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 200px;
+}
+.promo-price
+{
+    font-size: 3rem;
+}
+.shop_button
+{
+    color: blanchedalmond;
+    background-color: #ff6b6b;
+    height: 35px;
+    width: 100px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    border:none;
+    transition: 0.3s;
+}
+.shop_button:hover{
+    background-color: #fc9999;
+    cursor: pointer;
+}
