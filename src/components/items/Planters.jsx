@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../landing/Header";
 import styles from "./planters.module.css";
+import { Link } from "react-router-dom";
 import { planters } from "../../data/planters";
 
 const Planters = () => {
@@ -26,19 +27,18 @@ const Planters = () => {
           </div>
           <div className={styles.items}>
             {planters.map((planter) => (
+               
               <div className={styles.card}>
-                <a onClick={show}>
+                   {console.log(planter)}
+               <Link to={`/details/${planter.id}`}>
                   <div className={styles.image_div}>
                     <img className={styles.image} src={planter.image}></img>
                   </div>
-                </a>
+                  </Link>
                 <div className={styles.content}>
                   <h3>{planter.price}</h3>
                   <span style={{ fontSize: "0.9rem" }}>{planter.title}</span>
                 </div>
-                {/* <div style={{height:'auto'}}>
-                    <button className={styles.buy_button}>Buy Now</button>
-                </div> */}
               </div>
             ))}
           </div>

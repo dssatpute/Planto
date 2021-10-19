@@ -1,0 +1,36 @@
+.main
+{
+    display: flex;
+    flex-wrap: wrap;
+    /* margin-top: 50px; */
+    padding: 3rem;
+
+}
+.image_div
+{
+    height: 500px;
+    width: 500px;
+}
+.image
+{
+    height: 100%;
+    width: 100%;
+}
+.description
+{
+    padding-left: 2rem;
+    padding-right: 2rem;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+   
+}
+.title
+{
+    width: 500px;
+}
+.price
+{
+    font-size: 1.5rem;
+}
