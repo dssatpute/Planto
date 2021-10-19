@@ -7,6 +7,11 @@
     align-items: center;
     padding: 1.5rem;
 }
+.heading
+{
+    font-size: 1.3rem;
+    padding: 1.5rem;
+}
 .card
 {
     display: flex;
