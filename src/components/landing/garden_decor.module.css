@@ -42,9 +42,16 @@
     justify-content: space-evenly;
     height: 200px;
 }
-.promo-price
+.title
 {
-    font-size: 3rem;
+    font-weight: 100;
+    font-size: 1.2rem;
+    color: black;
+}
+.price
+{
+    color: "#082a54";
+    font-size: 1.5rem;
 }
 .shop_button
 {

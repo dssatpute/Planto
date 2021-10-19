@@ -1,7 +1,9 @@
-import Landing from "./components/Landing";
+import Landing from "./components/landing/Landing";
+import Signin from "./components/landing/SignIn";
+import Createaccount from "./components/landing/CreateAccount";
+import Planters from "./components/items/Planters";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Signin from "./components/SignIn";
-import Createaccount from "./components/CreateAccount";
+
 
 function App() {
   return (
@@ -16,6 +18,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <Createaccount />
+          </Route>
+          <Route path="/planters" exact>
+            <Planters />
           </Route>
         </Switch>
       </div>

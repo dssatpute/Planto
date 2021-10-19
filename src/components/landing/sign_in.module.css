@@ -19,7 +19,7 @@
   /* margin-left: 40px; */
 }
 .sign_in {
-  background: url('../assets/images/card_one.jpg');
+  background: url('../../assets/images/card_one.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   border: 1px solid black;

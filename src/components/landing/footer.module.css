@@ -1,18 +1,14 @@
 .main
 {
-    max-width: 70vw ;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 99vw ;
     margin-bottom: 50px;
     overflow-y:hidden;
     font-family: Verdana, Geneva, Tahoma, sans-serif    ;
     background-color: burlywood;
     margin-top: 40px;
-    align-items: center;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    justify-content: center;
+    justify-content: space-around;
 }
 .divison
 {
@@ -36,6 +32,7 @@
 }
 .list_item_social
 {
+    width: 250px;
     margin-top: 50px;
     display: flex;
     justify-content: space-evenly;
@@ -43,7 +40,7 @@
 }
 .title
 {
-   
+   width: 250px;
     margin-top: 30px;
     font-family: 'Pacifico';
     font-size: 2rem;

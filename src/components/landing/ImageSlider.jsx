@@ -1,13 +1,13 @@
 import React from "react";
-import styles from "../components/imageslider.module.css";
+import styles from "./imageslider.module.css"
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
 
-import c1 from '../assets/images/sliderimages/c1.png'
-import c2 from '../assets/images/sliderimages/c2.png'
-import c3 from '../assets/images/sliderimages/c3.png'
+import c1 from '../../assets/images/sliderimages/c1.png'
+import c2 from '../../assets/images/sliderimages/c2.png'
+import c3 from '../../assets/images/sliderimages/c3.png'
 
 
 const Imageslider = () => {

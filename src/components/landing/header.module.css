@@ -19,7 +19,7 @@
 .dropdown {
   margin-left: 40px;
   display: flex;
-  width: 300px;
+  width: 250px;
   justify-content: space-around;
 }
 .dropdown_button {

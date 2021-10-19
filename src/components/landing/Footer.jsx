@@ -32,16 +32,16 @@ const Footer = () => {
             <i class="fab fa-facebook"></i>
           </li>
           <li>
-            <FacebookIcon />{" "}
+            <FacebookIcon />
           </li>
           <li>
-            <WhatsAppIcon />{" "}
+            <WhatsAppIcon />
           </li>
           <li>
-            <InstagramIcon />{" "}
+            <InstagramIcon />
           </li>
           <li>
-            <EmailIcon />{" "}
+            <EmailIcon />
           </li>
         </ul>
       </div>
