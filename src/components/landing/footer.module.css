@@ -1,7 +1,7 @@
 .main
 {
     max-width: 99vw ;
-    height: 200px;
+    height:auto;
     padding-top: 2rem;
     overflow-y:hidden;
     font-family: Verdana, Geneva, Tahoma, sans-serif    ;

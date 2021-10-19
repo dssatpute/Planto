@@ -8,12 +8,12 @@ const Planters = () => {
     <>
       <Header />
       <div className={styles.main}>
-        <span>
+        <div className={styles.heading}>
           Your home garden will look much better with various types of planters
           available. Whether you want to hang plants on the wall or have them
           placed in pots and boxes, you will find the perfect planter to suit
           your liking.
-        </span>
+        </div>
         <div className={styles.items}>
           {planters.map((planter) => (
             <div className={styles.card}>
