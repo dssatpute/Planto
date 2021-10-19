@@ -1,39 +1,84 @@
-.items
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+
+.main
 {
-    display: grid;
-    grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    padding: 1.5rem;
+    height: auto;
 }
 .heading
 {
-    font-size: 1.3rem;
-    padding: 1.5rem;
-}
-.card
-{
+    margin-top: 10px;
+    font-size: 1rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    height: 100px;
     display: flex;
     flex-direction: column;
-    height: 300px;
+    justify-content: space-around;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.division
+{
+    display: flex;
+    padding: 1rem;
+}
+.items
+{
+    width: 80vw;
+    display: grid;
+    grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+    /* column-gap: 10px; */
+    row-gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.filter
+{
     width: 200px;
+}
+
+.card
+{
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    width: 250px;
+}
+.card:hover
+{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .content
 {
+    font-weight: bold;
+    font-family: 'Poppins';
+    padding: 1rem;
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+   
 }
 .image_div
 {
     padding: 1rem;
     object-fit: cover;
-    height:200px;
-    width: 180px;
+    height:250px;
+    width: 100%;
 }
 .image
 {
     height: 100%;
     width: 100%    ;
+}
+.buy_button
+{
+    height: 30px;
+    width: 100px;
+    border:none;
+    border-radius: 5px;
+    background-color: rgb(93, 93, 238);
+    color: whitesmoke;
+    margin-left: 15px;
 }
