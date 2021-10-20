@@ -1,20 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-.main
+.main{
+    height: auto;
+    padding: 1rem;
+}
+
+.header
 {
-    width: 80vw;
+    width: 100vw;
     height: auto;
     margin-left: auto;
     margin-right: auto;
-    padding-bottom: 2rem;
+    padding-top: 2rem;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap;
     font-family: 'Montserrat';
-    padding: 3rem;
-    
-
 }
 .image_div
 {
@@ -68,14 +70,40 @@
     background-color:#f58f8f;
     transition: 0.3s;
 }
+.feature
+{
+    font-family:'Montserrat';
+    height: 300px;
+    width: 50%;
+    padding: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-align:justify;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.feature_header
+{
+    
+}
+.special_feature
+{
+
+}
 
 @media only screen and (max-width: 600px) {
-    .main{
+    .header{
         padding: 1rem;
         width: 100%;
     }
     .description
     {
         padding: 1rem;
+    }
+    .feature
+    {
+        height: 400px;
+        width: auto;
     }
 }
