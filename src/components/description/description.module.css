@@ -1,15 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 .main
 {
+    width: 80vw;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 2rem;
     display: flex;
+    flex-direction: row;
+    justify-content: space-around;
     flex-wrap: wrap;
-    /* margin-top: 50px; */
+    font-family: 'Montserrat';
     padding: 3rem;
+    
 
 }
 .image_div
 {
-    height: 500px;
-    width: 500px;
+    height: 400px;
+    width: 380px;
 }
 .image
 {
@@ -18,19 +28,54 @@
 }
 .description
 {
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-top: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
     height: 300px;
+    width: 400px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
+
    
 }
 .title
 {
-    width: 500px;
+    width:100%;
 }
 .price
 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+}
+.buy_div
+{
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.add_to_cart
+{
+    color:white;
+    background-color:#ff6b6b;
+    height: 30px;
+    width: 150px;
+    border: none;
+    border-radius: 5px;
+}
+.add_to_cart:hover{
+    background-color:#f58f8f;
+    transition: 0.3s;
+}
+
+@media only screen and (max-width: 600px) {
+    .main{
+        padding: 1rem;
+        width: 100%;
+    }
+    .description
+    {
+        padding: 1rem;
+    }
 }
