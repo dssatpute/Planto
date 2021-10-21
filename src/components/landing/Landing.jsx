@@ -1,40 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
+import { useHistory } from "react-router";
+import { UserContext } from "../../App";
 import axios from "axios";
-import Header from "./Header";
+import NavBar from "./NavBar";
 import Imageslider from "./ImageSlider";
 import Bestselling from "./BestSelling";
 import Gardendecorcare from "./GardenDecorCare";
-import Footer from './Footer'
+import Footer from "./Footer";
 
 const Landing = () => {
-  const [render, setRender] = useState(true);
-  useEffect(() => {
-    axios
-      .get("http://localhost:3001/api/verifyLogin", {
-        headers: {
-          "auth-token": localStorage.getItem("token"),
-        },
-      })
-      .then((response) => {
-          if(response.data.loggedIn)
-          {
-            //   setRender(true)
-              alert("logged in")
-          }
-          else{
-            //   setRender(false)
-              alert("not logged in")
-          }
-      });
-  }, []);
+
+  const history = useHistory();
 
   return (
     <div>
-      <Header />
+      <NavBar />
       <Imageslider />
       <Bestselling />
-      <Gardendecorcare/>
-      <Footer/>
+      <Gardendecorcare />
+      <Footer />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../landing/Header";
+import NavBar from "../landing/NavBar";
 import styles from "./planters.module.css";
 import { Link } from "react-router-dom";
 import { planters } from "../../data/planters";
@@ -8,7 +8,7 @@ const Planters = () => {
     
   return (
     <>
-      <Header />
+      <NavBar />
       <div className={styles.main}>
         <div className={styles.heading}>
           <h2>Planter</h2>
@@ -29,7 +29,7 @@ const Planters = () => {
             {planters.map((planter) => (
                
               <div className={styles.card}>
-                   {console.log(planter)}
+                 
                <Link to={`/details/${planter.id}`}>
                   <div className={styles.image_div}>
                     <img className={styles.image} src={planter.image}></img>

@@ -1,9 +1,12 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./sign_in.module.css";
 import { useHistory } from "react-router";
+import { UserContext } from "../../App";
 
 const Signin = () => {
+
+  const {state,dispatch}=useContext(UserContext);
   let history=useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,20 +26,16 @@ const Signin = () => {
        if(response.data.status)
        {
          localStorage.setItem("token",response.data.token)
+          dispatch({
+            type:'USER_AUTH',
+            payload:true
+          })
+          history.push('/')
        }
        else
        {
          alert(response.data.message)
        }
-     })
-
-     await axios.get("http://localhost:3001/api/verifyLogin",{
-       headers:{
-         "auth-token":localStorage.getItem("token")
-       }
-     }).then((response)=>
-     {
-        console.log(response);
      })
 
 

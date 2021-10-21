@@ -86,35 +86,6 @@ export const planters = [
       "These planters can be used indoors in tabletop, office desk, etc",
       "You can use succulents, cactus, and small indoor plants in these planters.",
     ],
-  },
-  {
-    id: uuidv4(),
-    title:
-      "4 inch (10 cm) Round Terrarium Glass Vase without Rim (4.5 Inch (11.4 cm) Ht.)",
-    price: "₹ 200",
-    image: require("../assets/images/planters/round_terrarium.png").default,
-    description:
-      "This combo pack contains 3 Red, Blue, and Yellow color planters. Make a terrace, balcony, window, and indoor garden vibrant with these pots.",
-    features: [
-      "These planters introduce new designs with latest color trends keeping in mind.",
-      "The opinion of customers, plant nurseries, architects, and professionals has been taken into consideration while selecting this range of planters.",
-      "These planters can be used indoors in tabletop, office desk, etc",
-      "You can use succulents, cactus, and small indoor plants in these planters.",
-    ],
-  },
-  {
-    id: uuidv4(),
-    title:
-      "4 inch (10 cm) Round Terrarium Glass Vase without Rim (4.5 Inch (11.4 cm) Ht.)",
-    price: "₹ 200",
-    image: require("../assets/images/planters/round_terrarium.png").default,
-    description:
-      "This combo pack contains 3 Red, Blue, and Yellow color planters. Make a terrace, balcony, window, and indoor garden vibrant with these pots.",
-    features: [
-      "These planters introduce new designs with latest color trends keeping in mind.",
-      "The opinion of customers, plant nurseries, architects, and professionals has been taken into consideration while selecting this range of planters.",
-      "These planters can be used indoors in tabletop, office desk, etc",
-      "You can use succulents, cactus, and small indoor plants in these planters.",
-    ],
-  },
+  }
+
 ];
