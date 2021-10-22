@@ -6,7 +6,7 @@ import AddToCart from "./components/addToCart/AddToCart";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { createContext, useReducer } from "react";
 import { initialState, reducer } from "./reducers/auth/authUser";
-import { initialStateCart,reducerCart } from "./reducers/auth/addToCart/addToCart";
+import { initialStateCart,reducerCart } from "./reducers/addToCart/addToCart";
 
 export const UserContext = createContext();
 export const CartItems = createContext();
