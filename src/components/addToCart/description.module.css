@@ -33,7 +33,7 @@
     padding-top: 0;
     padding-left: 1rem;
     padding-right: 1rem;
-    height: 300px;
+    height: auto;
     width: 400px;
     display: flex;
     flex-direction: column;
@@ -69,6 +69,10 @@
 .add_to_cart:hover{
     background-color:#f58f8f;
     transition: 0.3s;
+}
+.order_summary
+{
+    
 }
 .feature
 {

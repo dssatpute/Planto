@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 .main
 {
     height: auto;
@@ -19,32 +19,40 @@
 .division
 {
     display: flex;
+    flex-direction: column;
+    /* align-items: center; */
     padding: 1rem;
 }
 .items
 {
     width: 80vw;
     display: grid;
-    grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
-    /* column-gap: 10px; */
+    grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+    margin-left: auto;
+    margin-right: auto;
     row-gap: 10px;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-
 }
 
 .filter
 {
-    width: 200px;
+    margin-top: 20px;
+    margin-left: 50px;
+    margin-bottom: 10px;
+    font-family: 'Roboto';
+    color: brown;
+    width: 500px;
 }
+
 
 .card
 {
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     display: flex;
     flex-direction: column;
-    height: 400px;
+    height: 370px;
     width: 250px;
 }
 .card:hover

@@ -5,17 +5,18 @@ import Planters from "./components/items/Planters";
 import AddToCart from "./components/addToCart/AddToCart";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { createContext, useReducer } from "react";
-import { initialState,reducer } from "./auth/authUser";
+import { initialState, reducer } from "./reducers/auth/authUser";
+import { initialStateCart,reducerCart } from "./reducers/auth/addToCart/addToCart";
 
 export const UserContext = createContext();
+export const CartItems = createContext();
 
 function App() {
-  
-  const [state,dispatch]=useReducer(reducer,initialState);
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const [cart,addToCart]=useReducer(reducerCart,initialStateCart)
 
-  
   return (
-    <UserContext.Provider value={{state,dispatch}}>
+    <UserContext.Provider value={{ state, dispatch }}>
       <Router>
         <div>
           <Switch>
@@ -31,9 +32,11 @@ function App() {
             <Route path="/planters" exact>
               <Planters />
             </Route>
-            <Route path="/details/:id" exact>
-              <AddToCart />
-            </Route>
+            <CartItems.Provider value={{cart,addToCart}}>
+              <Route path="/details/:id" exact>
+                <AddToCart />
+              </Route>
+            </CartItems.Provider>
           </Switch>
         </div>
       </Router>

@@ -3,17 +3,16 @@ import { useParams } from "react-router-dom";
 import { planters } from "../../data/planters";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useHistory,Redirect } from "react-router";
+import { useHistory, Redirect } from "react-router";
 import styles from "./description.module.css";
 import NavBar from "../landing/NavBar";
 import { UserContext } from "../../App";
-
+import { CartItems } from "../../App";
 
 const Description = () => {
-
-  const {state,dispatch}=useContext(UserContext)
-  const history=useHistory();
-  
+  const { state, dispatch } = useContext(UserContext);
+  const { cart, addToCart } = useContext(CartItems);
+  const history = useHistory();
   const { id } = useParams();
   const [item, setItem] = useState();
   useEffect(() => {
@@ -24,17 +23,9 @@ const Description = () => {
       });
   }, []);
 
-  const isLoggedIn=()=>
-  {
-    if(!state)
-    {
-      history.push('/login')
-    }
-  }
-
   return (
     <>
-    <NavBar/>
+      <NavBar />
       {item && (
         <div className={styles.main}>
           <div className={styles.header}>
@@ -60,7 +51,16 @@ const Description = () => {
                 </ul>
               </div>
               <div className={styles.buy_div}>
-                <button className={styles.add_to_cart} onClick={isLoggedIn}>
+                <button
+                  className={styles.add_to_cart}
+                  onClick={() => {
+                    addToCart({
+                      type: "ADD_TO_CART",
+                      payload: item,
+                    });
+                    console.log(cart);
+                  }}
+                >
                   Add to Cart
                 </button>
                 <div>
@@ -79,6 +79,7 @@ const Description = () => {
                   </select>
                 </div>
               </div>
+              <div className={styles.order_summary}>Hello</div>
             </div>
           </div>
           <div className={styles.feature}>
