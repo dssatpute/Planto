@@ -1,28 +1,49 @@
-import React, { useContext } from "react";
-import { useParams } from "react-router-dom";
-import { planters } from "../../data/planters";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { useHistory, Redirect } from "react-router";
+import React, { useContext, useState, useEffect } from "react";
+import { useParams,useHistory } from "react-router-dom";
 import styles from "./description.module.css";
 import NavBar from "../landing/NavBar";
-import { UserContext } from "../../App";
-import { CartItems } from "../../App";
+import axios from "axios";
 
-const Description = () => {
-  const { state, dispatch } = useContext(UserContext);
-  const { cart, addToCart } = useContext(CartItems);
-  const history = useHistory();
+const Description = (props) => {
+  const history=useHistory()
   const { id } = useParams();
   const [item, setItem] = useState();
-  useEffect(() => {
-    const filteredItem = planters
-      .filter((item) => item.id == id)
-      .map((item) => {
-        setItem(item);
+  const [quantity,setQuantity]=uses
+
+  useEffect(async () => {
+    await axios
+      .get(`http://localhost:3001/data/getClickedItem/${id}`)
+      .then((response) => {
+        console.log(response.data);
+        setItem(response.data);
+        
       });
   }, []);
+  const parseJwt = (token) => {
+    try {
+      return JSON.parse(atob(token.split(".")[1]));
+    } catch (e) {
+      return null;
+    }
+  };
+  const addToCartAction =async  (itemTitle, itemPrice, itemQuantity,itemImage) => {
 
+    if(localStorage.getItem("token"))
+    {
+      const userId=parseJwt(localStorage.getItem("token"))
+      console.log(userId);
+      await axios.post(
+        `http://localhost:3001/data/addCartItem/${userId.id}/${itemTitle}/${itemPrice}/${encodeURIComponent(itemImage)}`
+      ).then((response)=>
+      {
+        console.log(response.data);
+      })
+    }
+    else{
+      history.push('/login')
+    }
+    
+  };
   return (
     <>
       <NavBar />
@@ -54,32 +75,16 @@ const Description = () => {
                 <button
                   className={styles.add_to_cart}
                   onClick={() => {
-                    addToCart({
-                      type: "ADD_TO_CART",
-                      payload: item,
-                    });
-                    console.log(cart);
+                    addToCartAction(item.title,item.price.split(" ")[1],2,item.image)
                   }}
                 >
                   Add to Cart
                 </button>
                 <div>
-                  <label>Quantity</label>
-                  <select>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                  </select>
+                  <span>Quantity</span>
+                  <input type="number" min="1" max="10" ></input>
                 </div>
               </div>
-              <div className={styles.order_summary}>Hello</div>
             </div>
           </div>
           <div className={styles.feature}>
