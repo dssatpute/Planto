@@ -1,15 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NavBar from "../landing/NavBar";
 import styles from "./planters.module.css";
 import { Link } from "react-router-dom";
 import { planters } from "../../data/planters";
+import axios from "axios";
 
 const Planters = () => {
   const [min, setMin] = useState(100);
   const [max, setMax] = useState(1000);
+  const [planters, setPlanters] = useState([]);
+
+  useEffect(async () => {
+    await axios
+      .get("http://localhost:3001/data/getPlanters")
+      .then((response) => {
+        setPlanters(response.data);
+      });
+  }, []);
 
   return (
     <>
+    {console.log(planters)}
       <NavBar />
       <div className={styles.main}>
         <div className={styles.heading}>
@@ -22,26 +33,23 @@ const Planters = () => {
         <div className={styles.division}>
           <div className={styles.filter}>
             <div className={styles.price_filter}>
-              <span style={{marginRight:'10px'}}>From</span>
-              ₹
+              <span style={{ marginRight: "10px" }}>From</span>₹
               <select
                 id="min"
                 onChange={(e) => {
                   setMin(parseInt(e.target.value));
                 }}
-                style={{marginRight:'10px'}}
+                style={{ marginRight: "10px" }}
               >
                 <option value="100">100</option>
                 <option value="100">200</option>
               </select>
-              <span style={{marginRight:'10px'}}>To</span>
-              ₹
+              <span style={{ marginRight: "10px" }}>To</span>₹
               <select
                 id="max"
                 onChange={(e) => {
                   setMax(parseInt(e.target.value));
                 }}
-                
               >
                 <option value="300">300</option>
                 <option value="400">400</option>
@@ -53,15 +61,20 @@ const Planters = () => {
             {planters
               .filter((planter) => {
                 return (
-                  (parseInt(planter.price.split(" ")[1]) > min &&
-                  parseInt(planter.price.split(" ")[1]) < max)
+                  parseInt(planter.price.split(" ")[1]) > min &&
+                  parseInt(planter.price.split(" ")[1]) < max
                 );
               })
               .map((planter) => (
                 <div className={styles.card}>
-                  <Link to={`/details/${planter.id}`}>
+                  <Link to={`getClickedItem/${planter._id}`}>
                     <div className={styles.image_div}>
-                      <img className={styles.image} src={planter.image}></img>
+                      <img
+                        className={styles.image}
+                        src={
+                          planter.image
+                        }
+                      ></img>
                     </div>
                   </Link>
                   <div className={styles.content}>

@@ -7,10 +7,17 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   const location = useLocation();
-  const { state, dispatch } = useContext(UserContext);
+  // const { state, dispatch } = useContext(UserContext);
   const [activePlant, setActivePlant] = useState(false);
   const [activeGarden, setActiveGarden] = useState(false);
   const history = useHistory();
+  const [state, setState] = useState(false);
+  useEffect(() => {
+    var token = localStorage.getItem("token");
+    if (token) {
+      setState(true);
+    }
+  }, []);
 
   const RenderButton = () => {
     if (state) {
@@ -46,10 +53,11 @@ const Header = () => {
 
   return (
     <div className={styles.main}>
-      <div className={styles.logo} onClick={()=>history.push('/')}>
+      {console.log(state)}
+      <div className={styles.logo} onClick={() => history.push("/")}>
         <span className="logo">Planto</span>
       </div>
-      {location.pathname == "/" && (
+      {location.pathname === "/" && (
         <div className={styles.dropdown}>
           <div>
             <div
@@ -90,7 +98,9 @@ const Header = () => {
       )}
       <div className={styles.actions}>
         <div className={styles.cart}>
-          <ShoppingCartIcon />
+          <Link to="/cartItems">
+            <ShoppingCartIcon />
+          </Link>
         </div>
         <div className={styles.login_div}>
           <RenderButton />

@@ -17,7 +17,7 @@ const Createaccount = () => {
   const onRegisterHandler=async(e)=>
   {
     e.preventDefault();
-    if(password!=retypedPassword)
+    if(password!==retypedPassword)
     {
       alert("Password and Retyped password do not match!")
     }
