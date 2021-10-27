@@ -1,14 +1,14 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useParams,useHistory } from "react-router-dom";
-import styles from "./description.module.css";
+import styles from "./product_details.module.css";
 import NavBar from "../landing/NavBar";
 import axios from "axios";
 
-const Description = (props) => {
+const ProductDetails = (props) => {
   const history=useHistory()
   const { id } = useParams();
   const [item, setItem] = useState();
-  const [quantity,setQuantity]=uses
+  // const [quantity,setQuantity]=uses
 
   useEffect(async () => {
     await axios
@@ -33,7 +33,7 @@ const Description = (props) => {
       const userId=parseJwt(localStorage.getItem("token"))
       console.log(userId);
       await axios.post(
-        `http://localhost:3001/data/addCartItem/${userId.id}/${itemTitle}/${itemPrice}/${encodeURIComponent(itemImage)}`
+        `http://localhost:3001/cart/addCartItem/${userId.id}/${itemTitle}/${itemPrice}/${encodeURIComponent(itemImage)}`
       ).then((response)=>
       {
         console.log(response.data);
@@ -47,7 +47,7 @@ const Description = (props) => {
   return (
     <>
       <NavBar />
-      {item && (
+      {item ? (
         <div className={styles.main}>
           <div className={styles.header}>
             <div className={styles.image_div}>
@@ -102,9 +102,11 @@ const Description = (props) => {
             </div>
           </div>
         </div>
+      ):(
+        <h2>Loading</h2>
       )}
     </>
   );
 };
 
-export default Description;
+export default ProductDetails;
