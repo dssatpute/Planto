@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./bestselling.module.css";
-import { data } from "../../data/bestselling";
+import { data } from "../data/bestselling";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
+
 
 const Bestselling = () => {
   const settings = {

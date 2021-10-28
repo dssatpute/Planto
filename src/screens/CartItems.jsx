@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import Navbar from "../landing/NavBar";
+import Navbar from "../components/NavBar";
 import styles from "./cart_items.module.css";
 import { v4 as uuid4 } from "uuid";
 
@@ -14,7 +14,7 @@ const Checkout = () => {
       const userId = parseJwt(localStorage.getItem("token"));
       console.log(userId);
       await axios
-        .get(`http://localhost:3001/cart/getCartItems/${userId.id}`)
+        .get(`http://localhost:3001/api/cart/getCartItems/${userId.id}`)
         .then((response) => {
           setCartItems(response.data);
         });
@@ -62,7 +62,7 @@ const Checkout = () => {
                       value={item._id}
                       onClick={async () => {
                         await axios.get(
-                          `http://localhost:3001/cart/removeCartItem/${item._id}`
+                          `http://localhost:3001/api/cart/removeCartItem/${item._id}`
                         );
                         window.location.reload();
                       }}

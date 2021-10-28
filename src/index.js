@@ -9,3 +9,14 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
+export {default as Landing} from './screens/Landing'
+export {default as Planters} from './screens/Planters'
+export {default as BestSelling} from './screens/BestSelling'
+export {default as CartItems} from './screens/CartItems'
+export {default as CreateAccount} from './screens/CreateAccount'
+export {default as GardenDecorCare} from './screens/GardenDecorCare'
+export {default as ImageSlider} from './screens/ImageSlider'
+export {default as ProductDetails} from './screens/ProductDetails'
+export {default as SignIn} from './screens/SignIn'
+
+// export {Landing,Planters,BestSelling,CartItems,Createaccount,GardenDecorCare,ImageSlider,ProductDetails,SignIn} from './screens'

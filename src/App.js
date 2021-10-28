@@ -1,13 +1,9 @@
-import Landing from "./components/landing/Landing";
-import Signin from "./components/landing/SignIn";
-import Createaccount from "./components/landing/CreateAccount";
-import Planters from "./components/items/Planters";
-import ProductDetails from "./components/addToCart/ProductDetails";
-import CartItems from "./components/cart/CartItems";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { createContext, useReducer, useState } from "react";
 import { initialState, reducer } from "./reducers/auth/authUser";
-import { initialStateCart, reducerCart } from "./reducers/addToCart/addToCart";
+
+import {Landing,SignIn,CreateAccount,Planters,ProductDetails,CartItems} from './index'
+
 
 export const UserContext = createContext();
 
@@ -23,10 +19,10 @@ function App() {
               <Landing />
             </Route>
             <Route path="/login">
-              <Signin />
+              <SignIn />
             </Route>
             <Route path="/signup">
-              <Createaccount />
+              <CreateAccount />
             </Route>
             <Route path="/planters" exact>
               <Planters />

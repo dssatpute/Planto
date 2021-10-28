@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useParams,useHistory } from "react-router-dom";
 import styles from "./product_details.module.css";
-import NavBar from "../landing/NavBar";
+import NavBar from "../components/NavBar";
 import axios from "axios";
 
 const ProductDetails = (props) => {
@@ -12,7 +12,7 @@ const ProductDetails = (props) => {
 
   useEffect(async () => {
     await axios
-      .get(`http://localhost:3001/data/getClickedItem/${id}`)
+      .get(`http://localhost:3001/api/data/getClickedItem/${id}`)
       .then((response) => {
         console.log(response.data);
         setItem(response.data);
@@ -33,7 +33,7 @@ const ProductDetails = (props) => {
       const userId=parseJwt(localStorage.getItem("token"))
       console.log(userId);
       await axios.post(
-        `http://localhost:3001/cart/addCartItem/${userId.id}/${itemTitle}/${itemPrice}/${encodeURIComponent(itemImage)}`
+        `http://localhost:3001/api/cart/addCartItem/${userId.id}/${itemTitle}/${itemPrice}/${encodeURIComponent(itemImage)}`
       ).then((response)=>
       {
         console.log(response.data);

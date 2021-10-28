@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./navbar.module.css";
 import { useHistory, useLocation } from "react-router";
-import { UserContext } from "../../App";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link } from "react-router-dom";
 
@@ -111,53 +110,3 @@ const Header = () => {
 };
 
 export default Header;
-
-// const Main = styled.div`
-//   width: 100%;
-//   height: 70px;
-//   align-items: center;
-//   display: flex;
-//   justify-content: space-between;
-// `;
-// const Logo = styled.div`
-//   padding: 0px 50px;
-
-//   .logo {
-//     font-family: "Arial";
-//     font-size: 2.2rem;
-//     color: black;
-//     font-family: "Pacifico";
-//   }
-// `;
-// const Actions = styled.div`
-//   display: flex;
-//   width: 200px;
-//   justify-content: space-around;
-//   margin-right: 20px;
-//   align-items:center;
-// `;
-// const Login = styled.div`
-//   .login_button {
-//     padding: 10px;
-//     // border:2px solid black;
-//     border: none;
-//     border-radius: 20px;
-//     font-weight: bold;
-//   }
-//   .login_button:hover
-//   {
-//     color:white;
-//     background-color:#3d69e1;
-//     border:2.5px solid black;
-//     transition:all 0.3s ease-in-out ;
-//   }
-// `;
-// const Cart = styled.div`
-//   .cart {
-//     padding: 10px;
-//   }
-// `;
-
-// const Filter=styled.div`
-
-// `

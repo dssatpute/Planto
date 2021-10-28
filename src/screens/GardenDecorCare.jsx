@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./garden_decor.module.css";
-import { Link,useHistory } from "react-router-dom";
-import Planters from "../items/Planters";
+import {useHistory } from "react-router-dom";
 
 
 
@@ -31,7 +30,7 @@ const Gardendecorcare = () => {
         <div className={styles.promo_block}>
           <img
             src={
-              require("../../assets/images/promo_images/pebbles.jpg").default
+              require("../assets/images/promo_images/pebbles.jpg").default
             }
             className={styles.image}
           ></img>
@@ -49,7 +48,7 @@ const Gardendecorcare = () => {
         <div className={styles.promo_block}>
           <img
             src={
-              require("../../assets/images/promo_images/planters.jpg").default
+              require("../assets/images/promo_images/planters.jpg").default
             }
             className={styles.image}
           ></img>
@@ -66,7 +65,7 @@ const Gardendecorcare = () => {
         </div>
         <div className={styles.promo_block}>
           <img
-            src={require("../../assets/images/promo_images/tools.jpg").default}
+            src={require("../assets/images/promo_images/tools.jpg").default}
             className={styles.image}
           ></img>
           <div className={styles.inner_block}>
@@ -83,7 +82,7 @@ const Gardendecorcare = () => {
         <div className={styles.promo_block}>
           <img
             src={
-              require("../../assets/images/promo_images/soil_fertilizer.jpg")
+              require("../assets/images/promo_images/soil_fertilizer.jpg")
                 .default
             }
             className={styles.image}

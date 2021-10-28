@@ -1,12 +1,11 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router";
-import { UserContext } from "../../App";
 import axios from "axios";
-import NavBar from "./NavBar";
+import NavBar from "../components/NavBar";
 import Imageslider from "./ImageSlider";
 import Bestselling from "./BestSelling";
 import Gardendecorcare from "./GardenDecorCare";
-import Footer from "./Footer";
+import Footer from "../components/Footer";
 
 const Landing = () => {
   const history = useHistory();

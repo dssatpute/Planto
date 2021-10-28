@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import NavBar from "../landing/NavBar";
+import NavBar from "../components/NavBar";
 import styles from "./planters.module.css";
 import { Link } from "react-router-dom";
-import { planters } from "../../data/planters";
 import axios from "axios";
 
 const Planters = () => {
@@ -12,7 +11,7 @@ const Planters = () => {
 
   useEffect(async () => {
     await axios
-      .get("http://localhost:3001/data/getPlanters")
+      .get("http://localhost:3001/api/data/getPlanters")
       .then((response) => {
         setPlanters(response.data);
       });
