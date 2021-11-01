@@ -1,0 +1,11 @@
+.main
+{
+    width: 100%;
+    height: 100%;
+    background-color: rgb(222, 240, 234);
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Courier New', Courier, monospace;
+}

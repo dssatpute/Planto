@@ -77,8 +77,22 @@
   margin-left: auto;
 }
 .cart {
-  padding: 10px;
+  padding: 5px;
+  width: 60px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
+.count_cart
+{
+  font-family: 'Courier New', Courier, monospace;
+  background-color: rebeccapurple;
+  color: antiquewhite;
+  border-radius: 100px;
+  width: 20px;
+  height: 20px;
+}
+
 .login_button {
   padding: 10px;
   border: none;

@@ -2,26 +2,30 @@ import React, { useState, useEffect } from "react";
 import NavBar from "../components/NavBar";
 import styles from "./planters.module.css";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { v4 as uuid4 } from "uuid";
+import { getProducts } from "../services/productServices";
 
 const Planters = () => {
   const [min, setMin] = useState(100);
   const [max, setMax] = useState(1000);
   const [planters, setPlanters] = useState([]);
 
-  useEffect(async () => {
-    await axios
-      .get("http://localhost:3001/api/data/getPlanters")
-      .then((response) => {
-        setPlanters(response.data);
-      });
+  useEffect(() => {
+    async function init() {
+      try {
+        const planters = await getProducts("planters");
+        setPlanters(planters);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    init();
   }, []);
 
   return (
     <>
-    {console.log(planters)}
       <NavBar />
-      <div className={styles.main}>
+      <main className={styles.main}>
         <div className={styles.heading}>
           <h2>Planter</h2>
           <span>
@@ -57,7 +61,7 @@ const Planters = () => {
             </div>
           </div>
           <div className={styles.items}>
-            {planters
+            {planters?(planters
               .filter((planter) => {
                 return (
                   parseInt(planter.price.split(" ")[1]) > min &&
@@ -65,15 +69,10 @@ const Planters = () => {
                 );
               })
               .map((planter) => (
-                <div className={styles.card}>
-                  <Link to={`getClickedItem/${planter._id}`}>
+                <div className={styles.card} key={uuid4()}>
+                  <Link to={`get-clicked-item/planters/${planter._id}`}>
                     <div className={styles.image_div}>
-                      <img
-                        className={styles.image}
-                        src={
-                          planter.image
-                        }
-                      ></img>
+                      <img className={styles.image} src={planter.image}></img>
                     </div>
                   </Link>
                   <div className={styles.content}>
@@ -81,10 +80,10 @@ const Planters = () => {
                     <span style={{ fontSize: "0.9rem" }}>{planter.title}</span>
                   </div>
                 </div>
-              ))}
+              ))):(<h2>Loading</h2>)}
           </div>
         </div>
-      </div>
+      </main>
     </>
   );
 };

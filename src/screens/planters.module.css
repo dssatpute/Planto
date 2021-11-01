@@ -3,6 +3,7 @@
 .main
 {
     height: auto;
+    overflow-x: hidden;
 }
 .heading
 {
@@ -25,15 +26,17 @@
 }
 .items
 {
-    width: 80vw;
+    width: 90vw;
+    padding-left: 1rem;
+    padding-right: 1rem;
     display: grid;
     grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
     margin-left: auto;
     margin-right: auto;
     row-gap: 10px;
+    column-gap:50px;
     flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+    
 }
 
 .filter
@@ -52,6 +55,8 @@
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     display: flex;
     flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
     height: 370px;
     width: 250px;
 }

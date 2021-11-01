@@ -1,65 +1,74 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useParams,useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import styles from "./product_details.module.css";
 import NavBar from "../components/NavBar";
-import axios from "axios";
+import Loading from "./Loading";
+import { UserContext } from "../App";
+import { getSelectedItem } from "../services/productServices";
+import { addToCart } from "../services/cartServices";
 
-const ProductDetails = (props) => {
-  const history=useHistory()
-  const { id } = useParams();
-  const [item, setItem] = useState();
-  // const [quantity,setQuantity]=uses
+const ProductDetails = () => {
+  const { userAuthInfo, dispatch } = useContext(UserContext);
+  const { category, productId } = useParams();
+  const history = useHistory();
+  const [product, setProduct] = useState();
+  const [loading, setLoading] = useState(true);
+  const [cartItemQuantity, setCartItemQuantity] = useState(0);
 
-  useEffect(async () => {
-    await axios
-      .get(`http://localhost:3001/api/data/getClickedItem/${id}`)
-      .then((response) => {
-        console.log(response.data);
-        setItem(response.data);
-        
-      });
+  useEffect(() => {
+    async function init() {
+      try {
+        const item = await getSelectedItem(category, productId);
+        setProduct(item[0]);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    init();
   }, []);
-  const parseJwt = (token) => {
-    try {
-      return JSON.parse(atob(token.split(".")[1]));
-    } catch (e) {
-      return null;
-    }
-  };
-  const addToCartAction =async  (itemTitle, itemPrice, itemQuantity,itemImage) => {
 
-    if(localStorage.getItem("token"))
-    {
-      const userId=parseJwt(localStorage.getItem("token"))
-      console.log(userId);
-      await axios.post(
-        `http://localhost:3001/api/cart/addCartItem/${userId.id}/${itemTitle}/${itemPrice}/${encodeURIComponent(itemImage)}`
-      ).then((response)=>
-      {
-        console.log(response.data);
-      })
-    }
-    else{
-      history.push('/login')
-    }
-    
+
+  const addToCartAction =async() => {
+    const item = { ...product };
+    userAuthInfo.status
+      ? await addToCart(
+          item._id,
+          userAuthInfo.userId,
+          item.title,
+          item.image,
+          item.price.split(" ")[1],
+          cartItemQuantity
+        ).then((response)=>
+        {
+         if(response)
+         {
+          console.log("Added");
+         }
+        })
+      : history.push("/login");
   };
+
   return (
     <>
       <NavBar />
-      {item ? (
+      {loading ? (
+        <div>
+          <Loading />
+        </div>
+      ) : (
         <div className={styles.main}>
           <div className={styles.header}>
             <div className={styles.image_div}>
-              <img className={styles.image} src={item.image}></img>
+              <img className={styles.image} src={product.image}></img>
             </div>
             <div className={styles.description}>
               <div className={styles.title}>
-                <h2>{item.title}</h2>
+                <h2>{product.title}</h2>
                 <span>by Planto</span>
               </div>
               <div className={styles.price}>
-                <span>{item.price}</span>
+                <span>{product.price}</span>
               </div>
               <div className={styles.summary}>
                 <span>(MRP Inclusive of all taxes)</span>
@@ -75,14 +84,27 @@ const ProductDetails = (props) => {
                 <button
                   className={styles.add_to_cart}
                   onClick={() => {
-                    addToCartAction(item.title,item.price.split(" ")[1],2,item.image)
+                    addToCartAction(
+                      product._id,
+                      product.title,
+                      product.image,
+                      product.price.split(" ")[1],
+                      cartItemQuantity
+                    );
                   }}
                 >
                   Add to Cart
                 </button>
                 <div>
                   <span>Quantity</span>
-                  <input type="number" min="1" max="10" ></input>
+                  <input
+                    type="number"
+                    min="1"
+                    max="10"
+                    onChange={(e) => {
+                      setCartItemQuantity(e.target.value);
+                    }}
+                  ></input>
                 </div>
               </div>
             </div>
@@ -90,20 +112,18 @@ const ProductDetails = (props) => {
           <div className={styles.feature}>
             <div className={styles.feature_header}>
               <h2>Description</h2>
-              <span>{item.description}</span>
+              <span>{product.description}</span>
             </div>
             <div className={styles.special_feature}>
               <h2>Special Features</h2>
               <ul>
-                {item.features.map((feature) => (
-                  <li>{feature}</li>
+                {product.features.map((feature) => (
+                  <li key={Math.random()}>{feature}</li>
                 ))}
               </ul>
             </div>
           </div>
         </div>
-      ):(
-        <h2>Loading</h2>
       )}
     </>
   );

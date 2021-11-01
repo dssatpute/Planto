@@ -3,19 +3,22 @@ import styles from "./navbar.module.css";
 import { useHistory, useLocation } from "react-router";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
-const Header = () => {
+const NavBar = ({ count }) => {
   const location = useLocation();
-  // const { state, dispatch } = useContext(UserContext);
   const [activePlant, setActivePlant] = useState(false);
   const [activeGarden, setActiveGarden] = useState(false);
   const history = useHistory();
   const [state, setState] = useState(false);
-  useEffect(() => {
-    var token = localStorage.getItem("token");
-    if (token) {
-      setState(true);
-    }
+  const [localCount, setLocalCount] = useState(0);
+
+  useEffect(async () => {
+    axios
+      .get("http://localhost:3001/auth/verify", { withCredentials: true })
+      .then((response) => {
+        setState(response.data.flag);
+      });
   }, []);
 
   const RenderButton = () => {
@@ -25,9 +28,13 @@ const Header = () => {
           <button
             className={styles.login_button}
             onClick={() => {
-              localStorage.removeItem("token");
-              history.push("/");
-              window.location.reload();
+              axios
+                .get("http://localhost:3001/auth/logout", {
+                  withCredentials: true,
+                })
+                .then((reponse) => {
+                  window.location.replace("http://localhost:3000/");
+                });
             }}
           >
             LOG OUT
@@ -52,7 +59,6 @@ const Header = () => {
 
   return (
     <div className={styles.main}>
-      {console.log(state)}
       <div className={styles.logo} onClick={() => history.push("/")}>
         <span className="logo">Planto</span>
       </div>
@@ -97,9 +103,24 @@ const Header = () => {
       )}
       <div className={styles.actions}>
         <div className={styles.cart}>
-          <Link to="/cartItems">
+          <Link to="/cart-items">
             <ShoppingCartIcon />
           </Link>
+          {/* <div className={styles.count_cart}>
+            <span
+              style={{
+                display: "flex",
+                width: "100%",
+                justifyContent: "center",
+              }}
+            >
+             {
+               count?<span>{count}</span>:<span>{localCount}</span>
+              
+             }
+
+            </span>
+          </div> */}
         </div>
         <div className={styles.login_div}>
           <RenderButton />
@@ -109,4 +130,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default NavBar;

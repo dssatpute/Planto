@@ -9,13 +9,13 @@ import Footer from "../components/Footer";
 
 const Landing = () => {
   const history = useHistory();
-  useEffect(() => {
-    async function verifyLogin() {
-      await axios.get("http://localhost:3001/verify").then((response) => {
+
+  useEffect(async () => {
+    await axios
+      .get("http://localhost:3001/auth/verify", { withCredentials: true })
+      .then((response) => {
         console.log(response);
       });
-    }
-    verifyLogin();
   });
 
   return (

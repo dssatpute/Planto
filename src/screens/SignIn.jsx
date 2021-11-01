@@ -5,13 +5,12 @@ import { useHistory } from "react-router";
 import { UserContext } from "../App";
 
 const Signin = () => {
-
-  const {state,dispatch}=useContext(UserContext);
-  let history=useHistory();
+  const { state, dispatch } = useContext(UserContext);
+  let history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const onSubmitHandler =async (e) => {
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
 
     const config = {
@@ -20,26 +19,27 @@ const Signin = () => {
       },
     };
 
-     await axios.post("http://localhost:3001/auth/login",{email,password},config).then((response)=>
-     {
-       console.log(response);
-       if(response.data.status)
-       {
-         localStorage.setItem("token",response.data.token)
-          dispatch({
-            type:'USER_AUTH',
-            payload:true
-          })
-          history.push('/')
-       }
-       else
-       {
-         alert(response.data.message)
-       }
-     })
-
-
-    
+    await axios
+      .post(
+        "http://localhost:3001/auth/login",
+        { email, password },
+        {
+          withCredentials: true,
+          header: {
+            "Content-Type": "application/json",
+          },
+          credentials:"include"
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        if (response.data.flag) {
+          
+          history.push("/");
+        } else {
+          alert(response.data.message);
+        }
+      });
   };
 
   return (
