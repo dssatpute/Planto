@@ -8,14 +8,15 @@ import { getSelectedItem } from "../services/productServices";
 import { addToCart } from "../services/cartServices";
 
 const ProductDetails = () => {
-  const { userAuthInfo, dispatch } = useContext(UserContext);
+  const { userAuthInfo,dispatch} = useContext(UserContext);
   const { category, productId } = useParams();
   const history = useHistory();
   const [product, setProduct] = useState();
   const [loading, setLoading] = useState(true);
-  const [cartItemQuantity, setCartItemQuantity] = useState(0);
+  const [cartItemQuantity, setCartItemQuantity] = useState(1);
 
   useEffect(() => {
+    console.log(userAuthInfo);
     async function init() {
       try {
         const item = await getSelectedItem(category, productId);
@@ -28,25 +29,21 @@ const ProductDetails = () => {
     init();
   }, []);
 
-
-  const addToCartAction =async() => {
+  const addToCartAction = async () => {
     const item = { ...product };
-    userAuthInfo.status
-      ? await addToCart(
-          item._id,
-          userAuthInfo.userId,
-          item.title,
-          item.image,
-          item.price.split(" ")[1],
-          cartItemQuantity
-        ).then((response)=>
-        {
-         if(response)
-         {
-          console.log("Added");
-         }
-        })
-      : history.push("/login");
+
+     addToCart(
+      item._id,
+      userAuthInfo.userId,
+      item.title,
+      item.image,
+      item.price.split(" ")[1],
+      cartItemQuantity
+    ).then((response) => {
+      if (response) {
+        console.log("Added");
+      }
+    });
   };
 
   return (
@@ -84,16 +81,18 @@ const ProductDetails = () => {
                 <button
                   className={styles.add_to_cart}
                   onClick={() => {
-                    addToCartAction(
-                      product._id,
-                      product.title,
-                      product.image,
-                      product.price.split(" ")[1],
-                      cartItemQuantity
-                    );
+                    userAuthInfo.status
+                      ? addToCartAction(
+                          product._id,
+                          product.title,
+                          product.image,
+                          product.price.split(" ")[1],
+                          cartItemQuantity
+                        )
+                      : history.push("/login");
                   }}
                 >
-                  Add to Cart
+                {userAuthInfo.status?"Add To Cart":"Login to Add"}
                 </button>
                 <div>
                   <span>Quantity</span>
@@ -101,6 +100,7 @@ const ProductDetails = () => {
                     type="number"
                     min="1"
                     max="10"
+                    value={cartItemQuantity}
                     onChange={(e) => {
                       setCartItemQuantity(e.target.value);
                     }}

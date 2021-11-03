@@ -4,25 +4,19 @@ import { useHistory, useLocation } from "react-router";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { UserContext } from "../App";
+import { useContext } from "react";
 
-const NavBar = ({ count }) => {
+const NavBar = () => {
+
+  const { userAuthInfo } = useContext(UserContext);
   const location = useLocation();
   const [activePlant, setActivePlant] = useState(false);
   const [activeGarden, setActiveGarden] = useState(false);
   const history = useHistory();
-  const [state, setState] = useState(false);
-  const [localCount, setLocalCount] = useState(0);
-
-  useEffect(async () => {
-    axios
-      .get("http://localhost:3001/auth/verify", { withCredentials: true })
-      .then((response) => {
-        setState(response.data.flag);
-      });
-  }, []);
 
   const RenderButton = () => {
-    if (state) {
+    if (userAuthInfo.status) {
       return (
         <>
           <button
@@ -54,6 +48,20 @@ const NavBar = ({ count }) => {
           </button>
         </>
       );
+    }
+  };
+
+  const ShowCart = () => {
+    if (userAuthInfo.status) {
+      return (
+        <div>
+          <Link to="/cart-items">
+            <ShoppingCartIcon />
+          </Link>
+        </div>
+      );
+    } else {
+      return <div>Log In</div>;
     }
   };
 
@@ -103,24 +111,10 @@ const NavBar = ({ count }) => {
       )}
       <div className={styles.actions}>
         <div className={styles.cart}>
-          <Link to="/cart-items">
-            <ShoppingCartIcon />
-          </Link>
-          {/* <div className={styles.count_cart}>
-            <span
-              style={{
-                display: "flex",
-                width: "100%",
-                justifyContent: "center",
-              }}
-            >
-             {
-               count?<span>{count}</span>:<span>{localCount}</span>
-              
-             }
-
-            </span>
-          </div> */}
+          <ShowCart />
+          <div className={styles.count_cart}>
+            <span >{localStorage.getItem("cart-count")}</span>
+          </div>
         </div>
         <div className={styles.login_div}>
           <RenderButton />
