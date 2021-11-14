@@ -1,11 +1,10 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import styles from "./sign_in.module.css";
 import { useHistory } from "react-router";
-import { UserContext } from "../App";
 
 const Signin = () => {
-  const { state, dispatch } = useContext(UserContext);
+
   let history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,11 +12,7 @@ const Signin = () => {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
 
-    const config = {
-      header: {
-        "Content-Type": "application/json",
-      },
-    };
+   
 
     await axios
       .post(
@@ -34,7 +29,6 @@ const Signin = () => {
       .then((response) => {
         console.log(response);
         if (response.data.flag) {
-          
           history.push("/");
         } else {
           alert(response.data.message);
@@ -44,7 +38,7 @@ const Signin = () => {
 
   return (
     <div>
-      <span className={styles.header_logo}>Planto</span>
+      {/* <span className={styles.header_logo}>Planto</span> */}
       <div className={styles.sign_in}>
         <form
           className={styles.input_form}

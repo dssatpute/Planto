@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import NavBar from "../components/NavBar";
 import styles from "./planters.module.css";
 import { Link } from "react-router-dom";
 import { v4 as uuid4 } from "uuid";
@@ -24,7 +23,6 @@ const Planters = () => {
 
   return (
     <>
-      <NavBar />
       <main className={styles.main}>
         <div className={styles.heading}>
           <h2>Planter</h2>

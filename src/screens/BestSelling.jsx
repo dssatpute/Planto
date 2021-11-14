@@ -1,20 +1,14 @@
 import React from "react";
 import styles from "./bestselling.module.css";
 import { data } from "../data/bestselling";
+import { v4 as uuid4 } from "uuid";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 
 const Bestselling = () => {
-  const settings = {
-    autoplay: true,
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
+  // 
 
   return (
     <div className={styles.main}>
@@ -22,19 +16,21 @@ const Bestselling = () => {
       <div className={styles.carousel}>
         {data.map((plant) => {
           return (
-            <div className={styles.plant_card}>
+            
+            <div className={styles.plant_card} key={uuid4()} >
               <div className={styles.card_holder}>
-                <a href="#">
+                <a href="https://www.https://nurserylive.com/">
                   <img
                     className={styles.plant_image}
                     src={plant.image_url}
+                    alt="Cannot display"
                   ></img>
                 </a>
                 <div className={styles.content}>
                   <span className={styles.price}>
                     {plant.price}
                   </span>
-                 <a href="#" className={styles.title}><span >{plant.name}</span></a>
+                 <a href="https://www.https://nurserylive.com/" className={styles.title}><span >{plant.name}</span></a>
                 </div>
               </div>
             </div>

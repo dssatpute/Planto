@@ -1,37 +1,34 @@
-import React,{useState} from "react";
-import axios from 'axios'
+import React, { useState } from "react";
+import axios from "axios";
 import { useHistory } from "react-router";
 import styles from "./create_account.module.css";
 
-
 const Createaccount = () => {
-
-  let history=useHistory();
+  let history = useHistory();
 
   const [username, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [retypedPassword, setRetypedPassword] = useState("");
 
-
-  const onRegisterHandler=async(e)=>
-  {
+  const onRegisterHandler = async (e) => {
     e.preventDefault();
-    if(password!==retypedPassword)
-    {
-      alert("Password and Retyped password do not match!")
+    if (password !== retypedPassword) {
+      alert("Password and Retyped password do not match!");
+    } else {
+      const config = {
+        header: {
+          "Content-Type": "application/json",
+        },
+      };
+       await axios.post(
+        "http://localhost:3001/auth/register",
+        { username, email, password },
+        config
+      );
+      history.push("/login");
     }
-    else
-    {
-      const config={ header: {
-        "Content-Type": "application/json"
-      }}
-      const {data} = await axios.post("http://localhost:3001/auth/register",{username,email,password},config)
-      console.log(data);
-      history.push('/login')
-    }
-
-  }
+  };
 
   return (
     <div>
@@ -84,11 +81,12 @@ const Createaccount = () => {
             ></input>
           </div>
           <div>
-            <a >
-              <button className={styles.create_account_button} type="submit">
-                CREATE ACCOUNT
-              </button>
-            </a>
+            <button className={styles.create_account_button} type="submit" onClick={(e)=>
+            {
+              onRegisterHandler(e)
+            }}>
+              CREATE ACCOUNT
+            </button>
           </div>
         </form>
       </div>

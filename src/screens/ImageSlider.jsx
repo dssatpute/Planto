@@ -23,14 +23,14 @@ const Imageslider = () => {
   return (
     <div className={styles.main}>
       <Slider {...settings}>
-        <a href="#"  >
-            <img className={styles.c1} src={c1}></img>
+        <a href="https://nurserylive.com/"  >
+            <img className={styles.c1} src={c1} alt="Cannot display"></img>
         </a>
-        <a href="#"  >
-            <img className={styles.c2} src={c2}></img>
+        <a href="https://nurserylive.com/"  >
+            <img className={styles.c2} src={c2} alt="Cannot display"></img>
         </a>
-        <a href="#"  >
-            <img className={styles.c3} src={c3}></img>
+        <a href="https://nurserylive.com/"  >
+            <img className={styles.c3} src={c3} alt="Cannot display"></img>
         </a>
       </Slider>
     </div>

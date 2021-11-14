@@ -1,22 +1,21 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import styles from "./product_details.module.css";
-import NavBar from "../components/NavBar";
 import Loading from "./Loading";
-import { UserContext } from "../App";
 import { getSelectedItem } from "../services/productServices";
 import { addToCart } from "../services/cartServices";
 
-const ProductDetails = () => {
-  const { userAuthInfo,dispatch} = useContext(UserContext);
+
+const ProductDetails = ({user}) => {
+
   const { category, productId } = useParams();
   const history = useHistory();
   const [product, setProduct] = useState();
   const [loading, setLoading] = useState(true);
   const [cartItemQuantity, setCartItemQuantity] = useState(1);
 
+  
   useEffect(() => {
-    console.log(userAuthInfo);
     async function init() {
       try {
         const item = await getSelectedItem(category, productId);
@@ -31,10 +30,9 @@ const ProductDetails = () => {
 
   const addToCartAction = async () => {
     const item = { ...product };
-
      addToCart(
       item._id,
-      userAuthInfo.userId,
+      user.userId,
       item.title,
       item.image,
       item.price.split(" ")[1],
@@ -48,7 +46,6 @@ const ProductDetails = () => {
 
   return (
     <>
-      <NavBar />
       {loading ? (
         <div>
           <Loading />
@@ -57,7 +54,7 @@ const ProductDetails = () => {
         <div className={styles.main}>
           <div className={styles.header}>
             <div className={styles.image_div}>
-              <img className={styles.image} src={product.image}></img>
+              <img className={styles.image} src={product.image} alt="cannot display"></img>
             </div>
             <div className={styles.description}>
               <div className={styles.title}>
@@ -81,7 +78,7 @@ const ProductDetails = () => {
                 <button
                   className={styles.add_to_cart}
                   onClick={() => {
-                    userAuthInfo.status
+                    user.status
                       ? addToCartAction(
                           product._id,
                           product.title,
@@ -92,7 +89,7 @@ const ProductDetails = () => {
                       : history.push("/login");
                   }}
                 >
-                {userAuthInfo.status?"Add To Cart":"Login to Add"}
+                {user.status?"Add To Cart":"Login to Add"}
                 </button>
                 <div>
                   <span>Quantity</span>

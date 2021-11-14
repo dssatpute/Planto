@@ -20,7 +20,10 @@ export async function addToCart(
       "/" +
       itemPrice +
       "/" +
-      itemQuantity
+      itemQuantity,
+      {
+        withCredentials: true,
+      }
   );
 
   if (response.data === 200) {

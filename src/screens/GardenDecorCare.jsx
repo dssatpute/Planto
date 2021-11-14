@@ -32,6 +32,7 @@ const Gardendecorcare = () => {
             src={
               require("../assets/images/promo_images/pebbles.jpg").default
             }
+            alt="Cannot display"
             className={styles.image}
           ></img>
           <div className={styles.inner_block}>
@@ -51,6 +52,7 @@ const Gardendecorcare = () => {
               require("../assets/images/promo_images/planters.jpg").default
             }
             className={styles.image}
+            alt="Cannot display"
           ></img>
           <div className={styles.inner_block}>
             <h2 className={styles.price}>Tools starting at - ₹ 139</h2>
@@ -66,6 +68,7 @@ const Gardendecorcare = () => {
         <div className={styles.promo_block}>
           <img
             src={require("../assets/images/promo_images/tools.jpg").default}
+            alt="Cannot display"
             className={styles.image}
           ></img>
           <div className={styles.inner_block}>
@@ -85,6 +88,7 @@ const Gardendecorcare = () => {
               require("../assets/images/promo_images/soil_fertilizer.jpg")
                 .default
             }
+            alt="Cannot display"
             className={styles.image}
           ></img>
           <div className={styles.inner_block}>

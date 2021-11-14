@@ -51,8 +51,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    font-family: 'Montserrat';
     height: 100px;
-    width: auto;
+    width: 400px;
+    align-items: center;
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
@@ -62,6 +64,7 @@
 {
     margin-top: 50px;
     width: 100%;
+    height: 50px;
     margin-left: auto;
     margin-right: auto;
     font-size: 1.5rem;
@@ -83,16 +86,16 @@
 }
 .check_out
 {
+    text-decoration: none;
     margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
     color:white;
     font-size: 20px;
     background-color:#ff6b6b;
-    height: 40px;
-    width: 150px;
+    padding: 0.5rem;
     border: none;
-    border-radius: 50px;
+    border-radius: 10px;
 }
 
 
