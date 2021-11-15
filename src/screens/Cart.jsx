@@ -30,7 +30,6 @@ const Cart = ({ user }) => {
   }, [user]);
 
   if (cartItem) {
-    localStorage.setItem("cart-count", cartItem.length);
     localStorage.setItem("cart-total", calCartTotal());
   }
 

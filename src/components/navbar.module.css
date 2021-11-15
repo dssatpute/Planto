@@ -6,6 +6,7 @@
   padding: 0 1rem;
   align-items: center;
   display: flex;
+  
 }
 .logo_div {
   padding: 0px 50px;
@@ -70,7 +71,7 @@
 }
 .actions {
   display: flex;
-  width: 300px;
+  width:auto;
   font-family: 'Oxygen';
   justify-content: space-around;
   margin-right: 20px;
@@ -79,25 +80,36 @@
 }
 .cart {
   padding: 5px;
-  width: 60px;
+  width: 100px;
   display: flex;
   justify-content: space-around;
   align-items: center;
-
 }
-.cart:hover{
-  cursor: pointer;
+.cart_logo
+{
+  position: absolute;
 }
 .count_cart
 {
-  font-family: 'Courier New', Courier, monospace;
-  background-color: rebeccapurple;
-  color: antiquewhite;
+  background-color: rgb(228, 106, 106);
+  position: relative;
+  z-index: 5  ;
+  bottom: 20px;
+  left: 15px;
+  color: rgb(31, 21, 1);
   border-radius: 50px;
   text-align: center;
-  width: 20px;
-  height: 20px;
+  margin-top: 10px;
+  width: 18px;
+  height: 18px;
+  font-size: 13px;
 }
+
+/*  */
+.cart:hover{
+  cursor: pointer;
+}
+
 
 .login_button {
   padding: 10px;

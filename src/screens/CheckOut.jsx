@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { getCartItems } from "../services/cartServices";
 import { createOrder } from "../services/orderServices";
 import styles from "./checkout.module.css";
+import {states,months} from '../data/misc_data'
 
 const Checkout = ({ user }) => {
   const [firstname, setFname] = useState("");
@@ -19,44 +20,8 @@ const Checkout = ({ user }) => {
 
   const history = useHistory();
   const [cartItems, setCartItems] = useState([]);
-  const states = [
-    "Andhra Pradesh",
-    "Arunachal Pradesh",
-    "Assam",
-    "Bihar",
-    "Chhattisgarh",
-    "Goa",
-    "Gujarat",
-    "Haryana",
-    "Himachal Pradesh",
-    "Jammu and Kashmir",
-    "Jharkhand",
-    "Karnataka",
-    "Kerala",
-    "Madhya Pradesh",
-    "Maharashtra",
-    "Manipur",
-    "Meghalaya",
-    "Mizoram",
-    "Nagaland",
-    "Odisha",
-    "Punjab",
-    "Rajasthan",
-    "Sikkim",
-    "Tamil Nadu",
-    "Telangana",
-    "Tripura",
-    "Uttarakhand",
-    "Uttar Pradesh",
-    "West Bengal",
-    "Andaman and Nicobar Islands",
-    "Chandigarh",
-    "Dadra and Nagar Haveli",
-    "Daman and Diu",
-    "Delhi",
-    "Lakshadweep",
-    "Puducherry",
-  ];
+
+
 
   useEffect(() => {
     console.log(user);
@@ -79,10 +44,43 @@ const Checkout = ({ user }) => {
     });
     return total;
   };
+  console.log(months);
 
-  const onSubmitHandler =async (e) => {
+  const Summary = () => {
+
+    var date=new Date()
+    var day=String(date.getDate()+7)
+    var month=String(date.getMonth())
+    return (
+      <section className={styles.summary}>
+        <h2>Order Placed</h2>
+        <div>
+          <img
+            src={require("../assets/images/green_tick.png").default}
+            alt="Cannot display"
+          ></img>
+        </div>
+        <div classNam={styles.summary_content}>
+          <p>Your order has been placed and will be delivered to you by {day} th {months[0][month]} </p>
+        </div>
+      </section>
+    );
+  };
+
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
-    await createOrder(user.userId,firstname, lastname,email, address,contact, state,city,pin,cartItems)
+    await createOrder(
+      user.userId,
+      firstname,
+      lastname,
+      email,
+      address,
+      contact,
+      state,
+      city,
+      pin,
+      cartItems
+    );
     // console.log({ firstname, lastname, address, state });
   };
 
@@ -213,6 +211,7 @@ const Checkout = ({ user }) => {
           </div>
         </section>
       </div>
+      <Summary />
     </>
   );
 };
