@@ -20,5 +20,7 @@ export {default as ProductDetails} from './screens/ProductDetails'
 export {default as SignIn} from './screens/SignIn'
 export {default as CheckOut} from './screens/CheckOut'
 export {default as Navbar} from './components/NavBar'
+export {default as OrderPlaced} from './screens/OrderPlaced'
+
 
 // export {Landing,Planters,BestSelling,CartItems,Createaccount,GardenDecorCare,ImageSlider,ProductDetails,SignIn} from './screens'

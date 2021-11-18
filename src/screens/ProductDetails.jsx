@@ -5,16 +5,14 @@ import Loading from "./Loading";
 import { getSelectedItem } from "../services/productServices";
 import { addToCart } from "../services/cartServices";
 
-
-const ProductDetails = ({user}) => {
-
+const ProductDetails = ({ user }) => {
   const { category, productId } = useParams();
   const history = useHistory();
   const [product, setProduct] = useState();
   const [loading, setLoading] = useState(true);
   const [cartItemQuantity, setCartItemQuantity] = useState(1);
+  console.log(category,productId);
 
-  
   useEffect(() => {
     async function init() {
       try {
@@ -26,35 +24,39 @@ const ProductDetails = ({user}) => {
       }
     }
     init();
-  }, []);
+  }, [user]);
 
   const addToCartAction = async () => {
+    
     const item = { ...product };
-     addToCart(
+    const response = await addToCart(
       item._id,
       user.userId,
       item.title,
       item.image,
       item.price.split(" ")[1],
       cartItemQuantity
-    ).then((response) => {
-      if (response) {
-        console.log("Added");
+    );
+      if(response.status===400)
+      {
+        alert("Something went wrong")
       }
-    });
+      alert("Added")
   };
 
   return (
     <>
       {loading ? (
-        <div>
-          <Loading />
-        </div>
+        <Loading />
       ) : (
         <div className={styles.main}>
           <div className={styles.header}>
             <div className={styles.image_div}>
-              <img className={styles.image} src={product.image} alt="cannot display"></img>
+              <img
+                className={styles.image}
+                src={product.image}
+                alt="cannot display"
+              ></img>
             </div>
             <div className={styles.description}>
               <div className={styles.title}>
@@ -89,7 +91,7 @@ const ProductDetails = ({user}) => {
                       : history.push("/login");
                   }}
                 >
-                {user.status?"Add To Cart":"Login to Add"}
+                  {user.status ? "Add To Cart" : "Login to Add"}
                 </button>
                 <div>
                   <span>Quantity</span>

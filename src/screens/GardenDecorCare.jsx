@@ -1,37 +1,16 @@
 import React from "react";
 import styles from "./garden_decor.module.css";
-import {useHistory } from "react-router-dom";
-
-
+import { useHistory, Link } from "react-router-dom";
 
 const Gardendecorcare = () => {
-
-  const history=useHistory();
-  const navigatePlanter=()=>
-  {
-    history.push('/planters')
-  }
-  const navigatePebbles=()=>
-  {
-    history.push('/pebbles')
-  }
-  const navigateTools=()=>
-  {
-    history.push('/tools')
-  }
-  const navigateSoilFertilizer=()=>
-  {
-    history.push('/soil_fertilizers')
-  }
+  const history = useHistory();
 
   return (
     <>
       <div className={styles.main_container}>
         <div className={styles.promo_block}>
           <img
-            src={
-              require("../assets/images/promo_images/pebbles.jpg").default
-            }
+            src={require("../assets/images/promo_images/planters.jpg").default}
             alt="Cannot display"
             className={styles.image}
           ></img>
@@ -42,26 +21,28 @@ const Gardendecorcare = () => {
               materials
             </p>
             <div>
-              <button className={styles.shop_button} onClick={navigatePlanter}>Shop Now</button>
+              <Link to="/products/planters">
+                <button className={styles.shop_button}>Shop Now</button>
+              </Link>
             </div>
           </div>
         </div>
         <div className={styles.promo_block}>
           <img
-            src={
-              require("../assets/images/promo_images/planters.jpg").default
-            }
+            src={require("../assets/images/promo_images/pebbles.jpg").default}
             className={styles.image}
             alt="Cannot display"
           ></img>
           <div className={styles.inner_block}>
-            <h2 className={styles.price}>Tools starting at - ₹ 139</h2>
+            <h2 className={styles.price}>Pebbles starting at - ₹ 139</h2>
             <p className={styles.title}>
-              Get a tool for every gardening activity and make it a fun
-              experience
+              Add visual and textural features to your garden with wide variety
+              and range of natural pebbles
             </p>
             <div>
-              <button className={styles.shop_button} onClick={navigatePebbles}>Shop Now</button>
+              <Link to="/products/pebbles">
+                <button className={styles.shop_button}>Shop Now</button>
+              </Link>
             </div>
           </div>
         </div>
@@ -74,11 +55,13 @@ const Gardendecorcare = () => {
           <div className={styles.inner_block}>
             <h2 className={styles.price}>Tools starting at - ₹ 139</h2>
             <p className={styles.title}>
-              Add visual and textural features to your garden with wide variety
-              and range of natural pebbles
+              Get a tool for every gardening activity and make it a fun
+              experience
             </p>
             <div>
-              <button className={styles.shop_button} onClick={navigateTools}>Shop Now</button>
+              <Link to="/products/tools">
+                <button className={styles.shop_button}>Shop Now</button>
+              </Link>
             </div>
           </div>
         </div>
@@ -100,7 +83,14 @@ const Gardendecorcare = () => {
               fertilzers and soil
             </p>
             <div>
-              <button className={styles.shop_button} onClick={navigateSoilFertilizer}>Shop Now</button>
+              <Link to="/products/soil-and-fertilizers">
+                <button
+                  className={styles.shop_button}
+        
+                >
+                  Shop Now
+                </button>
+              </Link>
             </div>
           </div>
         </div>

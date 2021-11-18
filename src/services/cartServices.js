@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 export async function addToCart(
   itemId,
   userId,
@@ -8,7 +9,7 @@ export async function addToCart(
   itemPrice,
   itemQuantity
 ) {
-  const response = await axios.post(
+   const response=await axios.post(
     "http://localhost:3001/api/cart/add-to-cart/" +
       itemId +
       "/" +
@@ -24,29 +25,22 @@ export async function addToCart(
       {
         withCredentials: true,
       }
-  );
-
-  if (response.data === 200) {
-    return response.data;
-  } else {
-    throw response;
-  }
+  )
+  return response
 }
 
 export async function getCartItems(userId) {
   const response = await axios.get(
     "http://localhost:3001/api/cart/get-cart-item/" + userId
   );
-
   if (response.status === 200) {
-    return response.data;
+    return response.data
   } else {
     throw response;
   }
 }
 
 export async function removeCartItem(productId,userId) {
-  console.log(productId,userId);
   const response = await axios.post(
     "http://localhost:3001/api/cart/remove-cart-item/"+productId+"/"+userId
   );
@@ -58,4 +52,10 @@ export async function removeCartItem(productId,userId) {
   {
     return false
   }
+}
+
+export async function deleteCart(userId)
+{
+    const response=await axios.post("http://localhost:3001/api/cart/delete-cart/"+userId)
+    return response
 }

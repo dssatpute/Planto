@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
 import styles from "./planters.module.css";
-import { Link } from "react-router-dom";
+import { Link,useParams} from "react-router-dom";
 import { v4 as uuid4 } from "uuid";
 import { getProducts } from "../services/productServices";
 
 const Planters = () => {
   const [min, setMin] = useState(100);
   const [max, setMax] = useState(1000);
-  const [planters, setPlanters] = useState([]);
-
+  const [products, SetProducts] = useState([]);
+  const {category}=useParams()
   useEffect(() => {
+
     async function init() {
       try {
-        const planters = await getProducts("planters");
-        setPlanters(planters);
+        const products = await getProducts(category);
+        SetProducts(products);
       } catch (error) {
         console.log(error);
       }
@@ -59,23 +60,23 @@ const Planters = () => {
             </div>
           </div>
           <div className={styles.items}>
-            {planters?(planters
-              .filter((planter) => {
+            {products?(products
+              .filter((product) => {
                 return (
-                  parseInt(planter.price.split(" ")[1]) > min &&
-                  parseInt(planter.price.split(" ")[1]) < max
+                  parseInt(product.price.split(" ")[1]) > min &&
+                  parseInt(product.price.split(" ")[1]) < max
                 );
               })
-              .map((planter) => (
+              .map((product) => (
                 <div className={styles.card} key={uuid4()}>
-                  <Link to={`get-clicked-item/planters/${planter._id}`}>
+                  <Link to={`get-clicked-item/${category}/${product._id}`}>
                     <div className={styles.image_div}>
-                      <img className={styles.image} src={planter.image}></img>
+                      <img className={styles.image} src={product.image}></img>
                     </div>
                   </Link>
                   <div className={styles.content}>
-                    <h3>{planter.price}</h3>
-                    <span style={{ fontSize: "0.9rem" }}>{planter.title}</span>
+                    <h3>{product.price}</h3>
+                    <span style={{ fontSize: "0.9rem" }}>{product.title}</span>
                   </div>
                 </div>
               ))):(<h2>Loading</h2>)}

@@ -1,0 +1,42 @@
+.main
+{
+
+}
+.summary
+{
+    padding: 1rem;
+    width: 80%;
+    height: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: 'Montserrat';
+    text-align: center;
+    align-items: center;
+    background-color:rgb(179, 168, 168);
+}
+.summary_content
+{
+    font-size: 20px;
+}
+
+.return
+{
+   
+    background-color: #1878b9;
+    height: 50px;
+    width: 150px;
+    border:none;
+    border-radius: 5px;
+    color: white;
+    font-family:'Montserrat';
+    font-weight: bold;
+    transition: 0.3s;
+}
+.return:hover{
+    background-color: #063453;
+    cursor: pointer;
+}

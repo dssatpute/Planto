@@ -1,10 +1,11 @@
 import React from "react";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { getCartItems } from "../services/cartServices";
+import { deleteCart, getCartItems } from "../services/cartServices";
 import { createOrder } from "../services/orderServices";
 import styles from "./checkout.module.css";
-import {states,months} from '../data/misc_data'
+import { states } from "../data/misc_data";
+import Loading from "./Loading";
 
 const Checkout = ({ user }) => {
   const [firstname, setFname] = useState("");
@@ -20,22 +21,21 @@ const Checkout = ({ user }) => {
 
   const history = useHistory();
   const [cartItems, setCartItems] = useState([]);
-
-
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log(user);
+    // console.log(user);
     async function init() {
       try {
         const response = await getCartItems(user.userId);
-        console.log(response);
         setCartItems(response);
+        setLoading(false);
       } catch (error) {
         throw error;
       }
     }
     init();
-  }, []);
+  }, [user]);
 
   const calCartTotal = () => {
     var total = 0;
@@ -43,28 +43,6 @@ const Checkout = ({ user }) => {
       total = total + item.price * item.Quantity;
     });
     return total;
-  };
-  console.log(months);
-
-  const Summary = () => {
-
-    var date=new Date()
-    var day=String(date.getDate()+7)
-    var month=String(date.getMonth())
-    return (
-      <section className={styles.summary}>
-        <h2>Order Placed</h2>
-        <div>
-          <img
-            src={require("../assets/images/green_tick.png").default}
-            alt="Cannot display"
-          ></img>
-        </div>
-        <div classNam={styles.summary_content}>
-          <p>Your order has been placed and will be delivered to you by {day} th {months[0][month]} </p>
-        </div>
-      </section>
-    );
   };
 
   const onSubmitHandler = async (e) => {
@@ -80,12 +58,16 @@ const Checkout = ({ user }) => {
       city,
       pin,
       cartItems
-    );
-    // console.log({ firstname, lastname, address, state });
+    ).then((response) => {
+      deleteCart(user.userId);
+      localStorage.setItem("cart-count", 0);
+      history.push(`placed-order/${user.userId}`);
+    });
   };
 
   return (
     <>
+      {loading ? <Loading /> : ""}
       <div className={styles.main}>
         <section className={styles.shipping_info}>
           <form className={styles.shipping_form} onSubmit={onSubmitHandler}>
@@ -97,7 +79,7 @@ const Checkout = ({ user }) => {
                 placeholder="Email Address"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
-                // required:true
+                required="required"
               />
               <input
                 type="number"
@@ -106,7 +88,7 @@ const Checkout = ({ user }) => {
                   setContact(e.target.value);
                 }}
                 value={contact}
-                // required:true
+                required="required"
               />
             </div>
             <div className={styles.shipping_address}>
@@ -119,7 +101,7 @@ const Checkout = ({ user }) => {
                     setFname(e.target.value);
                   }}
                   value={firstname}
-                  // required:true
+                  required="required"
                 />
                 <input
                   type="text"
@@ -128,7 +110,7 @@ const Checkout = ({ user }) => {
                     setLname(e.target.value);
                   }}
                   value={lastname}
-                  // required:true
+                  required="required"
                 />
               </div>
               <input
@@ -138,7 +120,7 @@ const Checkout = ({ user }) => {
                   setAddress(e.target.value);
                 }}
                 value={address}
-                // required:true
+                required="required"
               />
               <div className={styles.state_pincode_city}>
                 <select
@@ -165,7 +147,7 @@ const Checkout = ({ user }) => {
                     setCity(e.target.value);
                   }}
                   value={city}
-                  // required:true
+                  required="required"
                 />
                 <input
                   type="number"
@@ -174,7 +156,7 @@ const Checkout = ({ user }) => {
                     setPin(e.target.value);
                   }}
                   value={pin}
-                  // required:true
+                  required="required"
                 />
               </div>
             </div>
@@ -187,6 +169,7 @@ const Checkout = ({ user }) => {
               >
                 Back to Cart
               </button>
+
               <button className={styles.place_order}>Place Order</button>
             </div>
           </form>
@@ -211,7 +194,6 @@ const Checkout = ({ user }) => {
           </div>
         </section>
       </div>
-      <Summary />
     </>
   );
 };

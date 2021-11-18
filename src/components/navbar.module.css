@@ -17,6 +17,9 @@
   color: black;
   font-family: "Pacifico";
 }
+.logo:hover{
+  cursor: pointer;
+}
 .dropdown {
   margin-left: 40px;
   display: flex;

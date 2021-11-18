@@ -8,29 +8,30 @@ import { getCartItems, removeCartItem } from "../services/cartServices";
 const Cart = ({ user }) => {
   const [cartItem, setCartItems] = useState([]);
   const history = useHistory();
+  const [loading, setLoading] = useState(true);
 
   const calCartTotal = () => {
     var total = 0;
     cartItem.map((item) => {
-      total= total + item.price * item.Quantity;
+      total = total + item.price * item.Quantity;
     });
     return total;
   };
 
   useEffect(() => {
     async function init() {
-     
       const response = await getCartItems(user.userId);
       setCartItems(response);
-     
+      setLoading(user.loading);
     }
-    if (user.status ) {
+    if (user.status) {
       init();
     }
   }, [user]);
 
   if (cartItem) {
     localStorage.setItem("cart-total", calCartTotal());
+    localStorage.setItem("cart-count", cartItem.length);
   }
 
   const ShowCheckOut = () => {
@@ -45,7 +46,9 @@ const Cart = ({ user }) => {
           </div>
         </div>
         <div>
-         <a href="/check-out" className={styles.check_out}>Check Out</a>
+          <a href="/check-out" className={styles.check_out}>
+            Check Out
+          </a>
         </div>
       </>
     );
@@ -53,7 +56,7 @@ const Cart = ({ user }) => {
 
   return (
     <div>
-      {cartItem.length > 0 ? (
+      {cartItem.length > 0 && cartItem ? (
         <div className={styles.item_list}>
           {cartItem.map((item) => (
             <section>

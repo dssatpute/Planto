@@ -4,22 +4,24 @@ import { useHistory, useLocation } from "react-router";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import axios from "axios";
 
-
 const NavBar = ({ user }) => {
   const location = useLocation();
   const [userName, setUserName] = useState();
   const [activePlant, setActivePlant] = useState(false);
   const [activeGarden, setActiveGarden] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
   const history = useHistory();
 
   useEffect(() => {
     if (user.status) {
       setUserName(user.userName);
-     
+      
+    }
+    else
+    {
+      localStorage.setItem("cart-count",0)
     }
   }, [user]);
-
- 
 
   const UserInfo = () => {
     return (
@@ -44,11 +46,10 @@ const NavBar = ({ user }) => {
                   withCredentials: true,
                 })
                 .then((reponse) => {
+                  localStorage.setItem("cart-total", 0);
+                  // localStorage.setItem("cart-count", 0);
                   window.location.replace("http://localhost:3000/");
                 });
-              localStorage.setItem("cart-total", 0);
-              localStorage.setItem("cart-count", 0);
-              // localStorage.setItem("user",JSON.stringify({status:false}))
             }}
           >
             LOG OUT
@@ -70,7 +71,6 @@ const NavBar = ({ user }) => {
       );
     }
   };
-  // console.log({ loginStatus, userId, userName, error });
   return (
     <div className="NavBar">
       <div className={styles.main}>

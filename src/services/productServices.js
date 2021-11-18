@@ -21,6 +21,7 @@ export async function getSelectedItem(category, itemId) {
         itemId
     )
     if (response.status === 200) {
+      console.log(response);
         return response.data;
       } else {
         throw response;

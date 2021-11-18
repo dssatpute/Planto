@@ -12,7 +12,7 @@ export async function createOrder(
   pin,
   cartItems
 ) {
-  const response = await axios.post(
+  await axios.post(
     "http://localhost:3001/api/orders/create-order",
     {
       userId,
@@ -24,7 +24,7 @@ export async function createOrder(
       state,
       city,
       pin,
-      cartItems
+      cartItems,
     },
     {
       header: {
@@ -32,4 +32,5 @@ export async function createOrder(
       },
     }
   );
+  // return response
 }
