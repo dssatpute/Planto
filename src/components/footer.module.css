@@ -1,12 +1,14 @@
 .main
-{
+{ 
     max-width: 99vw ;
-    height:auto;
+    height:200px;
     padding-top: 2rem;
     overflow-y:hidden;
     font-family: Verdana, Geneva, Tahoma, sans-serif    ;
-    background-color: burlywood;
+    background-color: rgb(209, 194, 174);
     margin-top: 40px;
+    /* position: fixed; */
+    bottom: 0px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -45,4 +47,9 @@
     margin-top: 30px;
     font-family: 'Pacifico';
     font-size: 2rem;
+}
+@media screen and (max-width:800px) {
+    .main{
+        height: auto;
+    }
 }

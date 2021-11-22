@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import styles from "./product_details.module.css";
 import Loading from "./Loading";
-import { getSelectedItem } from "../services/productServices";
+import { getProducts, getSelectedItem } from "../services/productServices";
 import { addToCart } from "../services/cartServices";
+import RelatedItems from "./RelatedItems";
 
 const ProductDetails = ({ user }) => {
   const { category, productId } = useParams();
@@ -11,7 +12,6 @@ const ProductDetails = ({ user }) => {
   const [product, setProduct] = useState();
   const [loading, setLoading] = useState(true);
   const [cartItemQuantity, setCartItemQuantity] = useState(1);
-  console.log(category,productId);
 
   useEffect(() => {
     async function init() {
@@ -24,10 +24,11 @@ const ProductDetails = ({ user }) => {
       }
     }
     init();
-  }, [user]);
+    window.scrollTo(0, 0);
+
+  }, [productId]);
 
   const addToCartAction = async () => {
-    
     const item = { ...product };
     const response = await addToCart(
       item._id,
@@ -37,11 +38,10 @@ const ProductDetails = ({ user }) => {
       item.price.split(" ")[1],
       cartItemQuantity
     );
-      if(response.status===400)
-      {
-        alert("Something went wrong")
-      }
-      alert("Added")
+    if (response.status === 400) {
+      alert("Something went wrong");
+    }
+    alert("Added");
   };
 
   return (
@@ -93,9 +93,9 @@ const ProductDetails = ({ user }) => {
                 >
                   {user.status ? "Add To Cart" : "Login to Add"}
                 </button>
-                <div>
+                <div >
                   <span>Quantity</span>
-                  <input
+                  {/* <input
                     type="number"
                     min="1"
                     max="10"
@@ -103,7 +103,21 @@ const ProductDetails = ({ user }) => {
                     onChange={(e) => {
                       setCartItemQuantity(e.target.value);
                     }}
-                  ></input>
+                  ></input> */}
+                  {
+                    <select className={styles.quantity}
+                      id="cart-count"
+                      defaultValue={cartItemQuantity}
+                      onChange={(e) => {
+                        setCartItemQuantity(e.target.value);
+                        console.log(e.target.value);
+                      }}
+                    >
+                      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((count) => (
+                        <option value={count}>{count}</option>
+                      ))}
+                    </select>
+                  }
                 </div>
               </div>
             </div>
@@ -111,11 +125,13 @@ const ProductDetails = ({ user }) => {
           <div className={styles.feature}>
             <div className={styles.feature_header}>
               <h2>Description</h2>
-              <span>{product.description}</span>
+              <div className={styles.product_description}>
+                <span>{product.description}</span>
+              </div>
             </div>
             <div className={styles.special_feature}>
-              <h2>Special Features</h2>
-              <ul>
+              <h3>Special Features</h3>
+              <ul style={{ marginTop: "10px", lineHeight: "23px" }}>
                 {product.features.map((feature) => (
                   <li key={Math.random()}>{feature}</li>
                 ))}
@@ -124,6 +140,7 @@ const ProductDetails = ({ user }) => {
           </div>
         </div>
       )}
+      <RelatedItems category={category} id={productId} />
     </>
   );
 };

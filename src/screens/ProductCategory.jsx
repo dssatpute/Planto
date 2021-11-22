@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from "react";
-import styles from "./planters.module.css";
+import styles from "./product_category.module.css";
 import { Link,useParams} from "react-router-dom";
 import { v4 as uuid4 } from "uuid";
 import { getProducts } from "../services/productServices";
 
-const Planters = () => {
+
+const Products = () => {
   const [min, setMin] = useState(100);
   const [max, setMax] = useState(1000);
-  const [products, SetProducts] = useState([]);
+  const [products, setProducts] = useState([]);
   const {category}=useParams()
   useEffect(() => {
 
     async function init() {
       try {
         const products = await getProducts(category);
-        SetProducts(products);
+        setProducts(products);
       } catch (error) {
         console.log(error);
       }
@@ -24,6 +25,7 @@ const Planters = () => {
 
   return (
     <>
+   
       <main className={styles.main}>
         <div className={styles.heading}>
           <h2>Planter</h2>
@@ -87,4 +89,4 @@ const Planters = () => {
   );
 };
 
-export default Planters;
+export default Products;

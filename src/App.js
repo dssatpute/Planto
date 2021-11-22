@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { createContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Loading from "./screens/Loading";
 import useAuth from "./services/useAuth";
 import {
@@ -7,11 +7,12 @@ import {
   Landing,
   SignIn,
   CreateAccount,
-  Planters,
+  ProductCategory,
   ProductDetails,
   Cart,
   CheckOut,
   OrderPlaced,
+  Footer
 } from "./index";
 
 function App() {
@@ -44,7 +45,7 @@ function App() {
                 <ProductDetails user={user} />
               </Route>
               <Route path="/products/:category" exact>
-                <Planters />
+                <ProductCategory />
               </Route>
 
               <Route path="/cart-items">
@@ -60,6 +61,7 @@ function App() {
           </div>
         </Router>
       )}
+      <Footer/>
     </div>
   );
 }

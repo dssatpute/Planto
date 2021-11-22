@@ -17,7 +17,8 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    border:1px solid violet
+    border:1px solid rgb(187, 190, 228);
+    padding: 0.5rem;
  
 }
 .item_section_one
@@ -46,20 +47,7 @@
     justify-content: space-around;
     width: 400px;
 }
-.no_cart_items
-{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    font-family: 'Montserrat';
-    height: 100px;
-    width: 400px;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 50px;
 
-}
 .cart_total
 {
     margin-top: 50px;
@@ -75,41 +63,64 @@
 {
     width: auto;
 }
-.continue_shopping
-{
-    color:white;
-    background-color:#ff6b6b;
-    height: 30px;
-    width: 150px;
-    border: none;
-    border-radius: 5px;
-}
+
 .check_out
 {
     text-decoration: none;
-    margin-top: 50px;
+    text-align: center;
+    background-color: #1878b9;
+    height: auto;
+    border: none;
+    color: white;
+    font-family: "Montserrat";
+    font-weight: bold;
+    transition: 0.3s;
+    padding: 1rem;
+}
+.no_cart_items
+{
+    height: 200px;
+    width: 400px;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-family: 'Montserrat';
+    align-items: center;
     margin-left: auto;
     margin-right: auto;
-    color:white;
-    font-size: 20px;
-    background-color:#ff6b6b;
-    padding: 0.5rem;
-    border: none;
-    border-radius: 10px;
-}
+    margin-top: 50px;
+    border: 1px solid rgb(182, 174, 174);
 
+}
+.continue_shopping
+{
+    text-decoration: none;
+    text-align: center;
+    background-color: #1878b9;
+    height: auto;
+    border: none;
+    color: white;
+    font-family: "Montserrat";
+    font-weight: bold;
+    transition: 0.3s;
+    padding: 1rem;
+}
 
 /* CSS */
 .delete_cart_item {
-    color:white;
-    background-color:#ff6b6b;
-    height: 30px;
-    width: 150px;
-    border: none;
-    border-radius: 5px;
+    background-color: #1878b9;
+  height: auto;
+  border: none;
+  color: white;
+  font-family: "Montserrat";
+  font-weight: bold;
+  transition: 0.3s;
+  padding: 1rem;
 }
 .delete_cart_item:hover , .continue_shopping:hover,.check_out:hover{
     cursor: pointer;
-    background-color:#f58f8f;
+    background-color:#3a9bdb;
     transition: 0.3s ;
 }

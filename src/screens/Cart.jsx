@@ -44,12 +44,12 @@ const Cart = ({ user }) => {
           <div>
             <span>₹ {localStorage.getItem("cart-total")}</span>
           </div>
+         
+          
         </div>
-        <div>
-          <a href="/check-out" className={styles.check_out}>
+        <a href="/check-out" className={styles.check_out}>
             Check Out
           </a>
-        </div>
       </>
     );
   };
