@@ -33,7 +33,7 @@ function App() {
             <Navbar user={user} />
             <Switch>
               <Route path="/" exact>
-                <Landing />
+                <Landing user={user}  loading={loading}/>
               </Route>
               <Route path="/login">
                 <SignIn />
@@ -61,7 +61,6 @@ function App() {
           </div>
         </Router>
       )}
-      <Footer/>
     </div>
   );
 }

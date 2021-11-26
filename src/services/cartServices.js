@@ -34,7 +34,7 @@ export async function getCartItems(userId) {
     "http://localhost:3001/api/cart/get-cart-item/" + userId
   );
   if (response.status === 200) {
-    return response.data
+    return [response.data,false]
   } else {
     throw response;
   }

@@ -5,6 +5,8 @@ import Loading from "./Loading";
 import { getProducts, getSelectedItem } from "../services/productServices";
 import { addToCart } from "../services/cartServices";
 import RelatedItems from "./RelatedItems";
+import { Footer } from "..";
+
 
 const ProductDetails = ({ user }) => {
   const { category, productId } = useParams();
@@ -42,6 +44,7 @@ const ProductDetails = ({ user }) => {
       alert("Something went wrong");
     }
     alert("Added");
+    localStorage.setItem("cart-count",parseInt(localStorage.getItem("cart-count"))+1)
   };
 
   return (
@@ -89,7 +92,9 @@ const ProductDetails = ({ user }) => {
                           cartItemQuantity
                         )
                       : history.push("/login");
-                  }}
+                
+                  }
+                }
                 >
                   {user.status ? "Add To Cart" : "Login to Add"}
                 </button>
@@ -141,6 +146,7 @@ const ProductDetails = ({ user }) => {
         </div>
       )}
       <RelatedItems category={category} id={productId} />
+      <Footer/>
     </>
   );
 };

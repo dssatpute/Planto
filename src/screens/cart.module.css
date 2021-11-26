@@ -2,13 +2,14 @@
 
 .item_list
 {
+    /* position: absolute; */
     display: flex;
     flex-direction: column;
     font-family: 'Montserrat';
     margin-left: auto;
     margin-right: auto;
     width: 70vw;
-    
+    margin-bottom: 50px;
 }
 .item
 {

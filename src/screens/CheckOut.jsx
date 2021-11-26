@@ -176,18 +176,19 @@ const Checkout = ({ user }) => {
         </section>
 
         <section className={styles.cart}>
-          {cartItems.map((item) => (
-            <div className={styles.item} key={item.productId}>
-              <div>
+          <div className={styles.item_section}>
+            {cartItems.map((item) => (
+              <div className={styles.item} key={item.productId}>
                 <div className={styles.image}>
                   <img src={item.productImage}></img>
                 </div>
-                <div className={styles.quantity}>{item.Quantity}</div>
+
+                <div className={styles.title}>{item.productTitle}</div>
+                <div>Qty {item.Quantity}</div>
+                <div className= {styles.price}>₹ {item.price * item.Quantity}</div>
               </div>
-              <div className={styles.title}>{item.productTitle}</div>
-              <div className={styles.price}>{item.price * item.Quantity}</div>
-            </div>
-          ))}
+            ))}
+          </div>
           <div className={styles.total}>
             <span>Total</span>
             <span>₹ {calCartTotal()} </span>

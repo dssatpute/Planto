@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router";
 import styles from "./create_account.module.css";
+import { Footer } from "..";
 
 const Createaccount = () => {
   let history = useHistory();
@@ -90,6 +91,7 @@ const Createaccount = () => {
           </div>
         </form>
       </div>
+      <Footer/>
     </div>
   );
 };

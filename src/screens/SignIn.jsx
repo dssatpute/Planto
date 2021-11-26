@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import styles from "./sign_in.module.css";
 import { useHistory } from "react-router";
+import { Footer } from "..";
+
 
 const Signin = () => {
   let history = useHistory();
@@ -88,6 +90,7 @@ const Signin = () => {
           </div>
         </div>
       )}
+      <Footer/>
     </div>
   );
 };

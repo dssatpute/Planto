@@ -3,6 +3,7 @@ import styles from "./navbar.module.css";
 import { useHistory, useLocation } from "react-router";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const NavBar = ({ user }) => {
   const location = useLocation();
@@ -15,19 +16,15 @@ const NavBar = ({ user }) => {
   useEffect(() => {
     if (user.status) {
       setUserName(user.userName);
-      
-    }
-    else
-    {
-      localStorage.setItem("cart-count",0)
+    } else {
+      localStorage.setItem("cart-count", 0);
     }
   }, [user]);
 
   const UserInfo = () => {
     return (
-      <div style={{ width: "130px" }}>
+      <div style={{ width: "auto" }}>
         <span>
-          <i>Welcome &nbsp; </i>
           <b>{userName}</b>
         </span>
       </div>
@@ -116,16 +113,21 @@ const NavBar = ({ user }) => {
             </div>
           </div>
         )}
-        {/* <div className={styles.actions}></div> */}
+        
         <div className={styles.actions}>
-          {user.status ? <UserInfo /> : ""}
+          {user.status ? (
+            <div style={{fontSize:'1.2rem'}}>
+              <UserInfo />
+            </div>
+          ) : (
+            ""
+          )}
 
           <div className={styles.cart}>
             <div className={styles.cart_logo}>
-              <a href="/cart-items">
+              <Link to="/cart-items">
                 <ShoppingCartIcon />
-                {/* {cartCount} */}
-              </a>
+              </Link>
             </div>
             <div className={styles.count_cart}>
               <span>{localStorage.getItem("cart-count")}</span>

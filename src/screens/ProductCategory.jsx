@@ -3,6 +3,7 @@ import styles from "./product_category.module.css";
 import { Link,useParams} from "react-router-dom";
 import { v4 as uuid4 } from "uuid";
 import { getProducts } from "../services/productServices";
+import { Footer } from "..";
 
 
 const Products = () => {
@@ -85,6 +86,7 @@ const Products = () => {
           </div>
         </div>
       </main>
+      <Footer/>
     </>
   );
 };

@@ -1,7 +1,9 @@
 import React from "react";
 import {useHistory} from 'react-router-dom'
+import { Footer } from "..";
 import { months } from "../data/misc_data";
 import styles from './order_placed.module.css'
+
 
 const OrderPlaced = ({user}) => {
     var date=new Date()
@@ -33,7 +35,7 @@ const OrderPlaced = ({user}) => {
           history.push('/')
         }}>Return Home</button>
       </section>
-      
+      <Footer/>
     </div>
   );
 };

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router";
 import styles from "./cart.module.css";
 import { v4 as uuid4 } from "uuid";
 import { Link } from "react-router-dom";
 import { getCartItems, removeCartItem } from "../services/cartServices";
+import Loading from "./Loading";
+import Footer from '../components/Footer'
 
 const Cart = ({ user }) => {
   const [cartItem, setCartItems] = useState([]);
-  const history = useHistory();
   const [loading, setLoading] = useState(true);
 
   const calCartTotal = () => {
@@ -21,8 +21,8 @@ const Cart = ({ user }) => {
   useEffect(() => {
     async function init() {
       const response = await getCartItems(user.userId);
-      setCartItems(response);
-      setLoading(user.loading);
+      setCartItems(response[0]);
+      setLoading(response[1]);
     }
     if (user.status) {
       init();
@@ -31,7 +31,7 @@ const Cart = ({ user }) => {
 
   if (cartItem) {
     localStorage.setItem("cart-total", calCartTotal());
-    localStorage.setItem("cart-count", cartItem.length);
+    // localStorage.setItem("cart-count", cartItem.length);
   }
 
   const ShowCheckOut = () => {
@@ -44,17 +44,24 @@ const Cart = ({ user }) => {
           <div>
             <span>₹ {localStorage.getItem("cart-total")}</span>
           </div>
-         
-          
         </div>
         <a href="/check-out" className={styles.check_out}>
-            Check Out
-          </a>
+          Check Out
+        </a>
       </>
     );
   };
 
-  return (
+  return loading? (
+    <div className={styles.no_cart_items}>
+          <h3>No Items in Cart.</h3>
+          <Link to="/">
+            <button className={styles.continue_shopping}>
+              Continue Shopping
+            </button>
+          </Link>
+        </div>
+  ) : (
     <div>
       {cartItem.length > 0 && cartItem ? (
         <div className={styles.item_list}>
@@ -76,7 +83,7 @@ const Cart = ({ user }) => {
                 </div>
                 <div className={styles.item_section_two}>
                   <div id="cost" style={{ marginLeft: "20px" }}>
-                    {item.price * item.Quantity}
+                    ₹ {item.price * item.Quantity}
                   </div>
                   <div>
                     <button
@@ -91,6 +98,10 @@ const Cart = ({ user }) => {
                               console.log(" no response");
                             }
                           }
+                        );
+                        localStorage.setItem(
+                          "cart-count",
+                          parseInt(localStorage.getItem("cart-count") - 1)
                         );
                       }}
                     >
@@ -113,6 +124,7 @@ const Cart = ({ user }) => {
           </Link>
         </div>
       )}
+      {/* <Footer/> */}
     </div>
   );
 };
