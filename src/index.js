@@ -22,6 +22,7 @@ export {default as CheckOut} from './screens/CheckOut'
 export {default as Navbar} from './components/NavBar'
 export {default as OrderPlaced} from './screens/OrderPlaced'
 export {default as Footer} from './components/Footer'
+export {default as Payment} from './screens/Payment'
 
 
 // export {Landing,Planters,BestSelling,CartItems,Createaccount,GardenDecorCare,ImageSlider,ProductDetails,SignIn} from './screens'

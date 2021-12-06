@@ -3,8 +3,6 @@ import styles from "./cart.module.css";
 import { v4 as uuid4 } from "uuid";
 import { Link } from "react-router-dom";
 import { getCartItems, removeCartItem } from "../services/cartServices";
-import Loading from "./Loading";
-import Footer from '../components/Footer'
 
 const Cart = ({ user }) => {
   const [cartItem, setCartItems] = useState([]);
@@ -31,7 +29,6 @@ const Cart = ({ user }) => {
 
   if (cartItem) {
     localStorage.setItem("cart-total", calCartTotal());
-    // localStorage.setItem("cart-count", cartItem.length);
   }
 
   const ShowCheckOut = () => {
@@ -124,7 +121,6 @@ const Cart = ({ user }) => {
           </Link>
         </div>
       )}
-      {/* <Footer/> */}
     </div>
   );
 };

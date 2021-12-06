@@ -1,11 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import {useHistory } from "react-router-dom";
 import { deleteCart, getCartItems } from "../services/cartServices";
 import { createOrder } from "../services/orderServices";
 import styles from "./checkout.module.css";
 import { states } from "../data/misc_data";
 import Loading from "./Loading";
+require("dotenv").config();
 
 const Checkout = ({ user }) => {
   const [firstname, setFname] = useState("");
@@ -16,19 +17,16 @@ const Checkout = ({ user }) => {
   const [state, setState] = useState("");
   const [pin, setPin] = useState();
   const [city, setCity] = useState("");
-
-  // const { userAuthInfo, dispatch } = useContext(UserContext);
-
   const history = useHistory();
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // console.log(user);
     async function init() {
       try {
         const response = await getCartItems(user.userId);
-        setCartItems(response);
+        setCartItems(response[0]);
+
         setLoading(false);
       } catch (error) {
         throw error;
@@ -47,8 +45,7 @@ const Checkout = ({ user }) => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    await createOrder(
-      user.userId,
+    localStorage.setItem("shipping-info",JSON.stringify({
       firstname,
       lastname,
       email,
@@ -57,13 +54,13 @@ const Checkout = ({ user }) => {
       state,
       city,
       pin,
-      cartItems
-    ).then((response) => {
-      deleteCart(user.userId);
+      cartItems,
+      total:calCartTotal()
+    }))
       localStorage.setItem("cart-count", 0);
-      history.push(`placed-order/${user.userId}`);
-    });
-  };
+      history.push("/payment");
+    };
+
 
   return (
     <>
@@ -162,37 +159,22 @@ const Checkout = ({ user }) => {
             </div>
             <div className={styles.footer_buttons}>
               <button
-                className={styles.return_to_cart}
+                className={styles.button}
                 onClick={() => {
                   history.push("/cart-items");
                 }}
               >
                 Back to Cart
               </button>
-
-              <button className={styles.place_order}>Place Order</button>
+              <button
+                className={styles.button}
+                type="submit"
+               
+              >
+                Continue Shipping
+              </button>
             </div>
           </form>
-        </section>
-
-        <section className={styles.cart}>
-          <div className={styles.item_section}>
-            {cartItems.map((item) => (
-              <div className={styles.item} key={item.productId}>
-                <div className={styles.image}>
-                  <img src={item.productImage}></img>
-                </div>
-
-                <div className={styles.title}>{item.productTitle}</div>
-                <div>Qty {item.Quantity}</div>
-                <div className= {styles.price}>₹ {item.price * item.Quantity}</div>
-              </div>
-            ))}
-          </div>
-          <div className={styles.total}>
-            <span>Total</span>
-            <span>₹ {calCartTotal()} </span>
-          </div>
         </section>
       </div>
     </>

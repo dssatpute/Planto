@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
 import { useParams, useHistory } from "react-router-dom";
 import styles from "./product_details.module.css";
 import Loading from "./Loading";
-import { getProducts, getSelectedItem } from "../services/productServices";
+import { getSelectedItem } from "../services/productServices";
 import { addToCart } from "../services/cartServices";
 import RelatedItems from "./RelatedItems";
 import { Footer } from "..";
-
+import Stripe from "stripe";
 
 const ProductDetails = ({ user }) => {
   const { category, productId } = useParams();
@@ -14,6 +15,7 @@ const ProductDetails = ({ user }) => {
   const [product, setProduct] = useState();
   const [loading, setLoading] = useState(true);
   const [cartItemQuantity, setCartItemQuantity] = useState(1);
+  const notify = () => toast("Wow so easy!");
 
   useEffect(() => {
     async function init() {
@@ -27,7 +29,6 @@ const ProductDetails = ({ user }) => {
     }
     init();
     window.scrollTo(0, 0);
-
   }, [productId]);
 
   const addToCartAction = async () => {
@@ -43,9 +44,18 @@ const ProductDetails = ({ user }) => {
     if (response.status === 400) {
       alert("Something went wrong");
     }
+
     alert("Added");
-    localStorage.setItem("cart-count",parseInt(localStorage.getItem("cart-count"))+1)
+    localStorage.setItem(
+      "cart-count",
+      parseInt(localStorage.getItem("cart-count")) + 1
+    );
   };
+
+  function handleToken(token)
+  {
+    console.log(token);
+  }
 
   return (
     <>
@@ -92,25 +102,15 @@ const ProductDetails = ({ user }) => {
                           cartItemQuantity
                         )
                       : history.push("/login");
-                
-                  }
-                }
+                  }}
                 >
                   {user.status ? "Add To Cart" : "Login to Add"}
                 </button>
-                <div >
+                <div>
                   <span>Quantity</span>
-                  {/* <input
-                    type="number"
-                    min="1"
-                    max="10"
-                    value={cartItemQuantity}
-                    onChange={(e) => {
-                      setCartItemQuantity(e.target.value);
-                    }}
-                  ></input> */}
                   {
-                    <select className={styles.quantity}
+                    <select
+                      className={styles.quantity}
                       id="cart-count"
                       defaultValue={cartItemQuantity}
                       onChange={(e) => {
@@ -146,7 +146,7 @@ const ProductDetails = ({ user }) => {
         </div>
       )}
       <RelatedItems category={category} id={productId} />
-      <Footer/>
+      <Footer />
     </>
   );
 };

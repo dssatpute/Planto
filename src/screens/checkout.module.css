@@ -78,7 +78,8 @@ select {
   display: flex;
   justify-content: space-between;
 }
-.place_order {
+
+.button {
   background-color: #1878b9;
   height: 50px;
   width: 150px;
@@ -89,19 +90,7 @@ select {
   font-weight: bold;
   transition: 0.3s;
 }
-.return_to_cart {
-  background-color: #1878b9;
-  height: 50px;
-  width: 150px;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  font-family: "Montserrat";
-  font-weight: bold;
-  transition: 0.3s;
-}
-.return_to_cart:hover,
-.place_order:hover {
+.button:hover {
   background-color: #063453;
   cursor: pointer;
 }

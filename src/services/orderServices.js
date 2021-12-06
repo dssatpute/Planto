@@ -12,25 +12,30 @@ export async function createOrder(
   pin,
   cartItems
 ) {
-  await axios.post(
-    "http://localhost:3001/api/orders/create-order",
-    {
-      userId,
-      firstname,
-      lastname,
-      email,
-      address,
-      contact,
-      state,
-      city,
-      pin,
-      cartItems,
-    },
-    {
-      header: {
-        "Content-Type": "application/json",
+  try {
+    await axios.post(
+      "http://localhost:3001/api/orders/create-order",
+      {
+        userId,
+        firstname,
+        lastname,
+        email,
+        address,
+        contact,
+        state,
+        city,
+        pin,
+        cartItems,
       },
-    }
-  );
-  // return response
+      {
+        header: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  } catch (err) {
+    console.log(err);
+  }
 }
+
+// return response

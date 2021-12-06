@@ -22,10 +22,14 @@ const Createaccount = () => {
           "Content-Type": "application/json",
         },
       };
-       await axios.post(
+      await axios.post(
         "http://localhost:3001/auth/register",
         { username, email, password },
-        config
+        {
+          header: {
+            "Content-Type": "application/json",
+          },
+        }
       );
       history.push("/login");
     }
@@ -33,7 +37,7 @@ const Createaccount = () => {
 
   return (
     <div>
-      <span className={styles.header_logo}>Planto</span>
+      {/* <span className={styles.header_logo}>Planto</span> */}
       <div className={styles.create_account_form}>
         <form className={styles.input_form} onSubmit={onRegisterHandler}>
           <h1>Create Account</h1>
@@ -82,16 +86,19 @@ const Createaccount = () => {
             ></input>
           </div>
           <div>
-            <button className={styles.create_account_button} type="submit" onClick={(e)=>
-            {
-              onRegisterHandler(e)
-            }}>
+            <button
+              className={styles.create_account_button}
+              type="submit"
+              onClick={(e) => {
+                onRegisterHandler(e);
+              }}
+            >
               CREATE ACCOUNT
             </button>
           </div>
         </form>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
