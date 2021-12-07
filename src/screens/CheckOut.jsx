@@ -64,7 +64,7 @@ const Checkout = ({ user }) => {
 
   return (
     <>
-      {loading ? <Loading /> : ""}
+      {loading ? <Loading /> :(
       <div className={styles.main}>
         <section className={styles.shipping_info}>
           <form className={styles.shipping_form} onSubmit={onSubmitHandler}>
@@ -176,7 +176,7 @@ const Checkout = ({ user }) => {
             </div>
           </form>
         </section>
-      </div>
+      </div>)}
     </>
   );
 };

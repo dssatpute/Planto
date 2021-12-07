@@ -3,6 +3,8 @@ import styles from "./cart.module.css";
 import { v4 as uuid4 } from "uuid";
 import { Link } from "react-router-dom";
 import { getCartItems, removeCartItem } from "../services/cartServices";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Cart = ({ user }) => {
   const [cartItem, setCartItems] = useState([]);
@@ -49,15 +51,13 @@ const Cart = ({ user }) => {
     );
   };
 
-  return loading? (
+  return loading ? (
     <div className={styles.no_cart_items}>
-          <h3>No Items in Cart.</h3>
-          <Link to="/">
-            <button className={styles.continue_shopping}>
-              Continue Shopping
-            </button>
-          </Link>
-        </div>
+      <h3>No Items in Cart.</h3>
+      <Link to="/">
+        <button className={styles.continue_shopping}>Continue Shopping</button>
+      </Link>
+    </div>
   ) : (
     <div>
       {cartItem.length > 0 && cartItem ? (
@@ -90,7 +90,11 @@ const Cart = ({ user }) => {
                         await removeCartItem(item.productId, user.userId).then(
                           (response) => {
                             if (response) {
-                              window.location.reload();
+                              toast.success("Deleted Item", {
+                                autoClose: 2000,
+                                hideProgressBar: true,
+                              });
+                              window.location.reload()
                             } else {
                               console.log(" no response");
                             }

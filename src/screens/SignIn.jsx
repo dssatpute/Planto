@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import styles from "./sign_in.module.css";
 import { useHistory } from "react-router";
 import { Footer } from "..";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Signin = () => {
   let history = useHistory();
@@ -27,11 +28,11 @@ const Signin = () => {
         }
       )
       .then((response) => {
-        setLoading(true);
-        window.location.replace("http://localhost:3000/");
+        toast.success("Signed In!")
+        window.setTimeout(window.location.replace("http://localhost:3000/"),5000);
       })
       .catch((error) => {
-        alert("Invalid Email or Password");
+        toast.error("Invalid Email or Password");
       });
   };
 
@@ -45,9 +46,9 @@ const Signin = () => {
             className={styles.input_form}
             onSubmit={(e) => onSubmitHandler(e)}
           >
-            <h1>Sign In</h1>
+            <h2>Sign in to your Account</h2>
             <label className={styles.input_label}>
-              <span>Email address</span>
+              <span>Email</span>
             </label>
             <div>
               <input
@@ -56,6 +57,7 @@ const Signin = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
                 required="required"
+                data-shrink="true"
               />
             </div>
             <label className={styles.input_label}>
@@ -79,18 +81,22 @@ const Signin = () => {
             </div>
           </form>
           <div className={styles.create_account}>
-            <span>OR</span>
-            <div>
-              <a href="/signup">
-                <button className={styles.create_account_button}>
-                  CREATE ACCOUNT
-                </button>
-              </a>
-            </div>
+            Don't have an account? <a href="/signup">Register</a>
           </div>
         </div>
       )}
-      <Footer/>
+      <Footer />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };

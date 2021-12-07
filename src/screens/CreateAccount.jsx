@@ -85,9 +85,8 @@ const Createaccount = () => {
               value={retypedPassword}
             ></input>
           </div>
-          <div>
-            <button
-              className={styles.create_account_button}
+          <div className={styles.create_account}>
+            <button  className={styles.create_account_button}
               type="submit"
               onClick={(e) => {
                 onRegisterHandler(e);

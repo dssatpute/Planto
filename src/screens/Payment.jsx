@@ -6,6 +6,7 @@ import { getCartItems } from "../services/cartServices";
 import { createOrder } from "../services/orderServices";
 import styles from "./payment.module.css";
 import Loading from "./Loading";
+import { toast, ToastContainer } from "react-toastify";
 
 const Payment = ({ user }) => {
   const [cartItems, setCartItems] = useState([]);
@@ -43,12 +44,12 @@ const Payment = ({ user }) => {
   }, [validPay]);
   const info = JSON.parse(localStorage.getItem("shipping-info"));
 
-    const handleToken = async (token) => {
-    const total=info.total;
+  const handleToken = async (token) => {
+    const total = info.total;
     await axios
       .post(
         "http://localhost:3001/api/payment/payment-info",
-        { token, cartItems, total},
+        { token, cartItems, total },
         {
           header: {
             "Content-Type": "application/json",
@@ -57,6 +58,10 @@ const Payment = ({ user }) => {
       )
       .then(async (response) => {
         if (response.data.status == "succeeded") {
+          toast.success("Payment Success!", {
+            autoClose: 2000,
+            hideProgressBar: true,
+          });
           setIsValidPay(true);
         }
         console.log(response);
@@ -122,6 +127,7 @@ const Payment = ({ user }) => {
               <span>₹ {info.total} </span>
             </div>
           </section>
+          <ToastContainer/>
         </div>
       )}
     </>

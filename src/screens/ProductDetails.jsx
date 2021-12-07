@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { ToastContainer, toast } from "react-toastify";
 import { useParams, useHistory } from "react-router-dom";
 import styles from "./product_details.module.css";
 import Loading from "./Loading";
@@ -7,7 +6,8 @@ import { getSelectedItem } from "../services/productServices";
 import { addToCart } from "../services/cartServices";
 import RelatedItems from "./RelatedItems";
 import { Footer } from "..";
-import Stripe from "stripe";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ProductDetails = ({ user }) => {
   const { category, productId } = useParams();
@@ -15,7 +15,7 @@ const ProductDetails = ({ user }) => {
   const [product, setProduct] = useState();
   const [loading, setLoading] = useState(true);
   const [cartItemQuantity, setCartItemQuantity] = useState(1);
-  const notify = () => toast("Wow so easy!");
+  const [added, setAdded] = useState(false);
 
   useEffect(() => {
     async function init() {
@@ -41,21 +41,20 @@ const ProductDetails = ({ user }) => {
       item.price.split(" ")[1],
       cartItemQuantity
     );
+    console.log(response);
     if (response.status === 400) {
-      alert("Something went wrong");
+      toast.error("Something went wrong");
     }
-
-    alert("Added");
+    setAdded(true);
+    toast.success("Added to Cart!", {
+      autoClose: 2000,
+      hideProgressBar: true,
+    });
     localStorage.setItem(
       "cart-count",
       parseInt(localStorage.getItem("cart-count")) + 1
     );
   };
-
-  function handleToken(token)
-  {
-    console.log(token);
-  }
 
   return (
     <>
@@ -145,8 +144,9 @@ const ProductDetails = ({ user }) => {
           </div>
         </div>
       )}
-      <RelatedItems category={category} id={productId} />
+      {!loading ? <RelatedItems category={category} id={productId} /> : ""}
       <Footer />
+      <ToastContainer />
     </>
   );
 };
