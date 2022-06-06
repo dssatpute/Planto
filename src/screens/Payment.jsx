@@ -2,11 +2,12 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import StripeCheckout from "react-stripe-checkout";
-import { getCartItems } from "../services/cartServices";
+import { deleteCart, getCartItems } from "../services/cartServices";
 import { createOrder } from "../services/orderServices";
 import styles from "./payment.module.css";
 import Loading from "./Loading";
 import { toast, ToastContainer } from "react-toastify";
+
 
 const Payment = ({ user }) => {
   const [cartItems, setCartItems] = useState([]);
@@ -58,13 +59,15 @@ const Payment = ({ user }) => {
       )
       .then(async (response) => {
         if (response.data.status == "succeeded") {
+          setIsValidPay(true);
+          await deleteCart(user.userId)
           toast.success("Payment Success!", {
             autoClose: 2000,
             hideProgressBar: true,
           });
-          setIsValidPay(true);
+          
         }
-        console.log(response);
+        
       });
   };
 
@@ -74,7 +77,7 @@ const Payment = ({ user }) => {
         <Loading />
       ) : (
         <div className={styles.main}>
-          <section className={styles.content}>
+          <section >
             <div className={styles.content}>
               <div className={styles.info_module}>
                 <div>Contact</div>

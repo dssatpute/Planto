@@ -4,10 +4,17 @@
   height: auto;
   padding: 1rem;
   transition: 0.3s ;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 90%;
+
 }
 
 .header {
-  width: 80%;
+  width: auto;
   height: auto;
   margin-left: auto;
   margin-right: auto;
@@ -32,7 +39,7 @@
   padding-left: 1rem;
   padding-right: 1rem;
   height: auto;
-  width: 400px;
+  width: 500px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -82,7 +89,7 @@
 }
 .feature {
   height: auto;
-  width: 50%;
+  width: auto;
   padding: 1rem;
   margin-top: 50px;
   margin-left: auto;
@@ -102,26 +109,39 @@
 .special_feature {
   font-size: 1.1rem;
 }
-
+.inner_desc
+{
+  margin-left: 50px;
+}
 @media only screen and (max-width: 600px) {
   .main{
-    width: 90%;
-  }
-  /* .header {
-
     width: 100%;
-    margin-left: auto;
-    margin-right: auto;
   }
-  .description {
-
+  .header
+  {
     width: 100%;
-  } */
+  }
   .feature {
-    height: 400px;
+    height: auto;
     width: auto;
   }
   .image_div{
     height: 350px;
   }
+  
+}
+
+
+@media only screen and (max-width: 920px) {
+  .description{
+    width: 100%;
+  }
+  .inner_desc
+  {
+    margin-left: auto;
+    margin-right: auto;
+    /* width:90%; */
+
+  }
+  
 }

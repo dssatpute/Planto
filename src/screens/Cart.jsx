@@ -73,14 +73,15 @@ const Cart = ({ user }) => {
                     <div>
                       <span>{item.productTitle}</span>
                     </div>
-                    <div>
-                      <span>Price ₹ {item.price}</span>
-                    </div>
+                   
                   </div>
                 </div>
                 <div className={styles.item_section_two}>
+                  <div>
+                    <span><b>Qty {item.Quantity}</b></span>
+                  </div>
                   <div id="cost" style={{ marginLeft: "20px" }}>
-                    ₹ {item.price * item.Quantity}
+                   <b> ₹ {item.price * item.Quantity}</b>
                   </div>
                   <div>
                     <button
@@ -90,20 +91,24 @@ const Cart = ({ user }) => {
                         await removeCartItem(item.productId, user.userId).then(
                           (response) => {
                             if (response) {
+                              localStorage.setItem(
+                                "cart-count",
+                                parseInt(localStorage.getItem("cart-count") - 1)
+                              );
                               toast.success("Deleted Item", {
                                 autoClose: 2000,
                                 hideProgressBar: true,
                               });
                               window.location.reload()
                             } else {
-                              console.log(" no response");
+                              toast.error("Something went wrong",{
+                                autoClose: 2000,
+                                hideProgressBar: true,
+                              })
                             }
                           }
                         );
-                        localStorage.setItem(
-                          "cart-count",
-                          parseInt(localStorage.getItem("cart-count") - 1)
-                        );
+                        
                       }}
                     >
                       Delete

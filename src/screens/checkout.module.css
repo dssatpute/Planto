@@ -3,7 +3,7 @@
 
 .main {
   display: flex;
-  padding: 4rem;
+  padding:2rem 4rem;
   width: 100%;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -15,7 +15,10 @@
   margin-bottom: 10px;
 }
 /* shipping info */
-
+.main input 
+{
+  font-size: 1rem;
+}
 .shipping_info {
   width: 500px;
   height: 500px;
@@ -44,8 +47,10 @@
 }
 .state_pincode_city {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  /* width: 100%; */
 }
 .state_pincode_city input,
 select {
@@ -77,6 +82,7 @@ select {
   margin-top: 30px;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 50px;
 }
 
 .button {
@@ -170,4 +176,31 @@ input[type="number"]::-webkit-outer-spin-button {
   -moz-appearance: none;
   appearance: none;
   margin: 0;
+}
+
+
+/*  */
+@media only screen and (max-width: 500px) {
+
+  .main{
+    width: 100%;
+    padding: 0;
+    height: auto;
+  }
+  .shipping_info{
+    width: 100%;
+    padding: 2rem;
+  }
+  .name{
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+  .name input{
+    width: 100%;
+  }
+  .footer_buttons
+  {
+    padding-bottom: 2rem;
+  }
 }

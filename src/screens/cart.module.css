@@ -17,6 +17,7 @@
     height: auto;
     width: 100%;
     display: flex;
+  
     justify-content: space-between;
     border:1px solid rgb(187, 190, 228);
     padding: 0.5rem;
@@ -46,6 +47,8 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    margin-left: auto;
+    margin-right: auto;
     width: 400px;
 }
 
@@ -124,4 +127,27 @@
     cursor: pointer;
     background-color:#3a9bdb;
     transition: 0.3s ;
+}
+
+/*  */
+@media only screen and (max-width: 650px) {
+
+    .item_list{
+        width: 100%;
+        padding: 1rem;
+    }
+}
+@media only screen and (max-width: 500px) {
+
+    .item_list{
+        width: 100%;
+        padding: 1rem;
+    }
+    .item{
+        flex-wrap: wrap;
+    }
+    .item_section_two{
+        justify-content: space-between;
+        width: 90%;
+    }
 }

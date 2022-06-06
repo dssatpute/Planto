@@ -34,7 +34,7 @@ const ProductDetails = ({ user }) => {
   const addToCartAction = async () => {
     const item = { ...product };
     const response = await addToCart(
-      item._id,
+      productId,
       user.userId,
       item.title,
       item.image,
@@ -42,6 +42,7 @@ const ProductDetails = ({ user }) => {
       cartItemQuantity
     );
     console.log(response);
+
     if (response.status === 400) {
       toast.error("Something went wrong");
     }
@@ -71,22 +72,24 @@ const ProductDetails = ({ user }) => {
               ></img>
             </div>
             <div className={styles.description}>
-              <div className={styles.title}>
-                <h2>{product.title}</h2>
-                <span>by Planto</span>
-              </div>
-              <div className={styles.price}>
-                <span>{product.price}</span>
-              </div>
-              <div className={styles.summary}>
-                <span>(MRP Inclusive of all taxes)</span>
-                <br></br>
-                <br></br>
-                <ul>
-                  <li>Shipping Rs 79 for entire order</li>
-                  <li>Dispatch in 5-8 days</li>
-                  <li>Country of origin: India</li>
-                </ul>
+              <div className={styles.inner_desc}>
+                <div className={styles.title}>
+                  <h2>{product.title}</h2>
+                  <span>by Planto</span>
+                </div>
+                <div className={styles.price}>
+                  <span>{product.price}</span>
+                </div>
+                <div className={styles.summary}>
+                  <span>(MRP Inclusive of all taxes)</span>
+                  <br></br>
+                  <br></br>
+                  <ul>
+                    <li>Shipping Rs 79 for entire order</li>
+                    <li>Dispatch in 5-8 days</li>
+                    <li>Country of origin: India</li>
+                  </ul>
+                </div>
               </div>
               <div className={styles.buy_div}>
                 <button

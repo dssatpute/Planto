@@ -10,13 +10,15 @@
 .content
 {
     text-align: justify;
-    font-family: 'Roboto';
+    font-family: 'Cabin';
     font-size: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 500px;
-    height:300px;
+    height:auto;
+    border:1px solid rgb(117, 114, 114);
+    padding: 1rem;
     /* border: 1px solid rgb(197, 192, 192); */
     
 }
@@ -27,6 +29,8 @@
     width: auto;
     justify-content: space-between;
     text-align: right;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 .button {
     margin-left: auto;
@@ -108,3 +112,17 @@
     font-size: 1.3rem;
   }
   
+
+  /*  */
+  @media only screen and (max-width: 500px) {
+
+  
+   .main{
+     width: 100%;
+     padding-left: 1rem;
+     padding-right: 1rem;
+   }
+   .cart{
+     width: 100%;
+   }
+  }

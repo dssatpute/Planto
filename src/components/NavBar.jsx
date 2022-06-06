@@ -2,15 +2,18 @@ import React, { useEffect, useState } from "react";
 import styles from "./navbar.module.css";
 import { useHistory, useLocation } from "react-router";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
 import { Link } from "react-router-dom";
+
 
 const NavBar = ({ user }) => {
   const location = useLocation();
   const [userName, setUserName] = useState();
   const [activePlant, setActivePlant] = useState(false);
   const [activeGarden, setActiveGarden] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
+  const [sidebar, setSideBar] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
@@ -23,7 +26,7 @@ const NavBar = ({ user }) => {
 
   const UserInfo = () => {
     return (
-      <div style={{ width: "auto" }}>
+      <div style={{ width: "auto" ,marginRight:"10px"}}>
         <span>
           <b>{userName}</b>
         </span>
@@ -67,6 +70,10 @@ const NavBar = ({ user }) => {
         </>
       );
     }
+
+    const onClickMenu = () => {
+      setSideBar(!sidebar);
+    };
   };
   return (
     <div className="NavBar">
@@ -74,49 +81,10 @@ const NavBar = ({ user }) => {
         <div className={styles.logo} onClick={() => history.push("/")}>
           <span className="logo">Planto</span>
         </div>
-        {location.pathname === "/" && (
-          <div className={styles.dropdown}>
-            <div>
-              <div
-                className={styles.dropdown_button}
-                onClick={(e) => {
-                  setActivePlant(!activePlant);
-                  setActiveGarden(false);
-                }}
-              >
-                Plants
-              </div>
-              {activePlant && (
-                <div className={styles.dropdown_content_plant}>
-                  <div className="dropdown-item">Air Plants</div>
-                  <div className="dropdown-item">Aquatic Plants</div>
-                  <div className="dropdown-item">Bamboo Plants</div>
-                </div>
-              )}
-            </div>
-            <div>
-              <div
-                className={styles.dropdown_button}
-                onClick={(e) => {
-                  setActiveGarden(!activeGarden);
-                  setActivePlant(false);
-                }}
-              >
-                Accessories
-              </div>
-              {activeGarden && (
-                <div className={styles.dropdown_content_garden}>
-                  <div className="dropdown-item">Garden Accessories</div>
-                  <div className="dropdown-item">Garden Tools</div>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
-        
+
         <div className={styles.actions}>
           {user.status ? (
-            <div style={{fontSize:'1.2rem'}}>
+            <div style={{ fontSize: "1rem" }}>
               <UserInfo />
             </div>
           ) : (
@@ -136,6 +104,34 @@ const NavBar = ({ user }) => {
 
           <div className={styles.login_div}>
             <RenderButton />
+          </div>
+        </div>
+
+        <div
+          onClick={() => {
+            setSideBar(!sidebar);
+          }}
+          className={styles.ham_icon}
+        >
+          <MenuIcon />
+        </div>
+        <div className={sidebar?styles.side_menu_main:styles.hide}>
+          <div className={styles.close}>
+            <div onClick={()=>{setSideBar(!sidebar)}}>
+              <CloseIcon />
+            </div>
+          </div>
+          <div className={styles.side_menu_items}>
+            <div>
+              <a href="/">Home</a>
+            </div>
+            <div>
+              <a href="/cart-items">Cart ({localStorage.getItem("cart-count")} items)</a>
+            </div>
+            <div>
+              {" "}
+              <RenderButton />
+            </div>
           </div>
         </div>
       </div>

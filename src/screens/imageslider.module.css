@@ -1,12 +1,13 @@
-
-.main
-{
-    overflow-x: hidden;
-    overflow-y:hidden;
-   
-    
+.main {
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
-.c1 ,.c2, .c3
-{
-    width: 100%;
+.c1,
+.c2,
+.c3 {
+  width: 100%;
+}
+
+@media only screen and (max-width: 500px) {
+   
 }
