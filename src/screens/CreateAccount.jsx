@@ -37,7 +37,7 @@ const Createaccount = () => {
     }
     else {
       await axios.post(
-        "http://localhost:3001/auth/register",
+        "https://planto-backend-version.herokuapp.com/auth/register",
         { username, email, password },
         {
           header: {
