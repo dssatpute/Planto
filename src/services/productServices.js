@@ -4,7 +4,7 @@ const baseUrl = process.env.BACKEND_BASE_URL;
 
 export async function getProducts(category) {
   const response=await axios
-    .get("http://localhost:3001/api/data/get-products/" + category)
+    .get("https://planto-backend-version.herokuapp.com/api/data/get-products/" + category)
     if (response.status === 200) {
       console.log(response.data);
         return response.data;
@@ -17,7 +17,7 @@ export async function getSelectedItem(category, itemId)
  {
   const response=await axios
     .get(
-      "http://localhost:3001/api/data/get-selected-item/" +
+      "https://planto-backend-version.herokuapp.com/api/data/get-selected-item/" +
         category +
         "/" +
         itemId
