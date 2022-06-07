@@ -11,7 +11,7 @@ export default function useAuth() {
   useEffect(() => {
     async function init() {
       try {
-        const response = await axios.get("http://localhost:3001/auth/verify", {
+        const response = await axios.get("https://planto-backend-version.herokuapp.com/auth/verify", {
           withCredentials: true,
         });
         if (response.status === 200) {
