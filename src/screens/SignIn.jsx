@@ -17,7 +17,7 @@ const Signin = () => {
     e.preventDefault();
     await axios
       .post(
-        "http://localhost:3001/auth/login",
+        "https://planto-backend-version.herokuapp.com/auth/login",
         { email, password },
         {
           withCredentials: true,
@@ -29,7 +29,8 @@ const Signin = () => {
       )
       .then((response) => {
         toast.success("Signed In!")
-        window.setTimeout(window.location.replace("http://localhost:3000/"),5000);
+        history.push('/')
+        window.setTimeout(window.location.replace("https://planto-app.herokuapp.com/"),5000);
       })
       .catch((error) => {
         toast.error("Invalid Email or Password");

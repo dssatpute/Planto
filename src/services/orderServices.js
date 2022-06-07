@@ -14,7 +14,7 @@ export async function createOrder(
 ) {
   try {
     await axios.post(
-      "http://localhost:3001/api/orders/create-order",
+      "https://planto-backend-version.herokuapp.com/api/orders/create-order",
       {
         userId,
         firstname,

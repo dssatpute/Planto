@@ -10,7 +10,7 @@ export async function addToCart(
   itemQuantity
 ) {
    const response=await axios.post(
-    "http://localhost:3001/api/cart/add-to-cart/" +
+    "https://planto-backend-version.herokuapp.com/api/cart/add-to-cart/" +
       itemId +
       "/" +
       userId +
@@ -31,7 +31,7 @@ export async function addToCart(
 
 export async function getCartItems(userId) {
   const response = await axios.get(
-    "http://localhost:3001/api/cart/get-cart-item/" + userId
+    "https://planto-backend-version.herokuapp.com/api/cart/get-cart-item/" + userId
   );
   if (response.status === 200) {
     return [response.data,false]
@@ -42,7 +42,7 @@ export async function getCartItems(userId) {
 
 export async function removeCartItem(productId,userId) {
   const response = await axios.post(
-    "http://localhost:3001/api/cart/remove-cart-item/"+productId+"/"+userId
+    "https://planto-backend-version.herokuapp.com/api/cart/remove-cart-item/"+productId+"/"+userId
   );
   if(response.status===200)
   {
@@ -56,6 +56,6 @@ export async function removeCartItem(productId,userId) {
 
 export async function deleteCart(userId)
 {
-    const response=await axios.post("http://localhost:3001/api/cart/delete-cart/"+userId)
+    const response=await axios.post("https://planto-backend-version.herokuapp.com/api/cart/delete-cart/"+userId)
     return response
 }
